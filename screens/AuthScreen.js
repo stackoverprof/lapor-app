@@ -1,28 +1,17 @@
 import React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
-import button from '../core/style/button.style'
+import { Text, View } from 'react-native'
 import { css } from '@emotion/native'
+
+import RaisedButton from '../components/atomic/RaisedButton'
 
 const Auth = ({navigation}) => {
     return (
         <View style={styles.screen}>
             <Text>Sign In Screen</Text>
-            <MainButton>Sign In with Google</MainButton>
+            <RaisedButton>Sign In with Google</RaisedButton>
         </View>
     )
 }
-
-const MainButton = ({children}) => (
-    <View style={button.container}>
-        <View style={button.wall}><Text style={button.text}>Sign In</Text></View>
-        <TouchableOpacity 
-            style={button.main}
-            activeOpacity={0}
-        >
-            <Text style={button.text}>Sign In</Text>
-        </TouchableOpacity>
-    </View>
-)
 
 export default Auth
 
