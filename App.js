@@ -1,21 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import SignIn from './screens/Auth/SignIn'
+import SignUp from './screens/Auth/SignUp'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const App = () => {
+    const RootStack = createStackNavigator()
+    
+    return (
+        <NavigationContainer>
+            <RootStack.Navigator headerMode="none">
+                <RootStack.Screen name="Auth" component={AuthArea} options={{ animationEnabled: false }}/>
+                <RootStack.Screen name="App" component={AuthArea} options={{ animationEnabled: false }}/>
+            </RootStack.Navigator>
+        </NavigationContainer>
+    )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const AppArea = () => {
+    const AuthStack = createStackNavigator()
+
+    return (
+        <AuthStack.Navigator headerMode="none">
+            <AuthStack.Screen name="SignIn" component={SignIn} options={{ title: "Sign In" }}/>
+            <AuthStack.Screen name="SignUp" component={SignUp} options={{ title: "Create Account" }}/>
+        </AuthStack.Navigator>
+    )
+}
+
+const AuthArea = () => {
+    const AuthStack = createStackNavigator()
+
+    return (
+        <AuthStack.Navigator headerMode="none">
+            <AuthStack.Screen name="SignIn" component={SignIn} options={{ title: "Sign In" }}/>
+            <AuthStack.Screen name="SignUp" component={SignUp} options={{ title: "Create Account" }}/>
+        </AuthStack.Navigator>
+    )
+}
+
+export default App
