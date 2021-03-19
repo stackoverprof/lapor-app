@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity } from 'react-native'
 import button from '../core/style/button.style'
+import { css } from '@emotion/native'
 
 const Auth = ({navigation}) => {
     return (
-        <View style={styles.container}>
+        <View style={styles.screen}>
             <Text>Sign In Screen</Text>
             <MainButton>Sign In with Google</MainButton>
         </View>
@@ -12,21 +13,23 @@ const Auth = ({navigation}) => {
 }
 
 const MainButton = ({children}) => (
-    <TouchableOpacity 
-        style={button.main} 
-        onPress={() => navigation.push("SignUp")}
-    >
-        <Text style={button.mainText}>{children}</Text>
-        <View style={button.mainWall}></View>
-    </TouchableOpacity>
+    <View style={button.container}>
+        <View style={button.wall}><Text style={button.text}>Sign In</Text></View>
+        <TouchableOpacity 
+            style={button.main}
+            activeOpacity={0}
+        >
+            <Text style={button.text}>Sign In</Text>
+        </TouchableOpacity>
+    </View>
 )
 
 export default Auth
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center"
-    },
-})
+const styles = {
+    screen: css`
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+    `
+}

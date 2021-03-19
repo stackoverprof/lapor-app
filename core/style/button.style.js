@@ -1,21 +1,26 @@
-import { StyleSheet } from 'react-native'
+import { css } from '@emotion/native'
 import c from './theme.style'
 
-export default button = StyleSheet.create({
-    main: {
-      paddingHorizontal: 20,
-      paddingVertical: 12,
-      marginVertical: 10,
-      borderRadius: 8,
-      backgroundColor: c.red,
-    },
-    mainText: {
-      color: c.white,
-    },
-    mainWall: {
-      backgroundColor: c.redDark,
-      height: 20,
-      position: 'relative',
-      top: 20,
-    }
-})
+export default button = {
+  container: css`
+    position: relative;
+    display: flex;
+  `,
+  main: css`
+    position: relative;
+    background: ${c.red};
+    padding: 12px 24px;
+    border-radius: 8px;
+  `,
+  wall: css`
+    position: absolute;
+    background: ${c.redDark};
+    padding: 12px 24px;
+    border-radius: 8px;
+    top: 4px;
+  `,
+  text: css`
+    color: white;
+    font-weight: 600;
+  `
+}
