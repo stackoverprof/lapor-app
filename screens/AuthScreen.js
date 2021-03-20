@@ -1,27 +1,20 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, Image } from 'react-native'
 import { css } from '@emotion/native'
 
 import RaisedButton from '../components/atomic/RaisedButton'
 import googleIcon from '../assets/img/icons/google.png'
-import Icon from 'react-native-vector-icons/Feather'
+import logo from '../assets/img/logo-lapor.png'
 
 const Auth = ({navigation}) => {
     return (
         <View style={styles.screen}>
-            <Text>Sign In Screen</Text>
-            <RaisedButton style={styles.button} iconsrc={googleIcon} size={16}>Sign In with Google</RaisedButton>
-            <RaisedButton style={styles.button} size={16}>Sign In with Google</RaisedButton>
-            <RaisedButton 
-                style={styles.button} 
-                size={16}
-                icon={<Icon name="mail" size={24} color="#fff"/>}
-            >
-                Sign In with Google
-            </RaisedButton>
-
+            <View style={styles.containerLeft}>
+                <Image source={logo} style={styles.logo} />
+            </View>
+            
             <View style={styles.lower}>
-                <RaisedButton style={styles.authButton} wide iconsrc={googleIcon} size={16}>Sign In with Google</RaisedButton>
+                <RaisedButton style={styles.authButton} wide iconsrc={googleIcon} size={20}>Sign In with Google</RaisedButton>
             </View>
         </View>
     )
@@ -32,8 +25,9 @@ export default Auth
 const styles = {
     screen: css`
         flex: 1;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        padding-top: 140px;
     `,
     button: css`
         margin: 6px 0;
@@ -41,13 +35,22 @@ const styles = {
     authButton: css`
         margin: 6px 0;
     `,
-    lower: css`
-        position: absolute;
-        bottom: 0;
-        flex: 1;
+    logo: css`
+        width: 152px;
+        height: 47.2px;
+    `,
+    containerLeft: css`
         width: 100%;
-        height: 100px;
-        justify-content: center;
+        padding: 0 48px;
+        justify-content: flex-start;
+    `,
+    lower: css`
+        padding-bottom: 32px;
+        flex: 1;
+        max-height: 260px;
+        width: 100%;
+        justify-content: flex-end;
         align-items: center;
+        background: #0002;
     `
 }

@@ -11,6 +11,7 @@
     "@emotion/native": "^11.0.0",
     "@emotion/react": "^11.1.5",
     "@expo-google-fonts/poppins": "^0.1.0",
+    "@expo-google-fonts/roboto-slab": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.8",
     "@react-navigation/drawer": "^5.12.4",

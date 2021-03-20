@@ -56,8 +56,8 @@ const styles = {
     `,
     icon: ({size}) => css`
         position: relative;
-        width: ${(size*2.4).toString()}px;
-        height: ${(size*2.4).toString()}px;
+        width: ${(size*2).toString()}px;
+        height: ${(size*2).toString()}px;
         margin: 6px 0 6px 8px;
     `,
     wall: css`
