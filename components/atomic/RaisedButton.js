@@ -81,7 +81,7 @@ const styles = {
         font-weight: 600;
         font-size: ${(Platform.OS === 'android' ? size - 2 : size).toString()}px;
         margin:  ${Platform.OS === 'android' ? '8px' : '12px'} ${iconsrc || icon ? '14px' : '18px'};
-        ${Platform.OS === 'android' ? 'padding-top: 4px' : ''}
+        ${Platform.OS === 'android' ? 'padding-top: 4px;' : ''}
         ${wide ? 'flex: 1; text-align: center;' : ''}
     `
 }

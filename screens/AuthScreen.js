@@ -1,21 +1,26 @@
 import React from 'react'
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, ImageBackground } from 'react-native'
 import { css } from '@emotion/native'
 
 import RaisedButton from '../components/atomic/RaisedButton'
-import googleIcon from '../assets/img/icons/google.png'
-import logo from '../assets/img/logo-lapor.png'
+import img_googleIcon from '../assets/img/icons/google.png'
+import img_logo from '../assets/img/logo-lapor.png'
+import img_thief from '../assets/img/illus/thief.png'
 
 const Auth = ({navigation}) => {
     return (
         <View style={styles.screen}>
             <View style={styles.containerLeft}>
-                <Image source={logo} style={styles.logo} />
+                <Image source={img_logo} style={styles.logo} />
             </View>
-            
-            <View style={styles.lower}>
-                <RaisedButton style={styles.authButton} wide iconsrc={googleIcon} size={20}>Sign In with Google</RaisedButton>
-            </View>
+
+            <ImageBackground 
+                source={img_thief} 
+                style={styles.lower} 
+                imageStyle={[styles.lowerbg, {resizeMode: 'stretch', top: undefined, left: undefined}]}
+            >
+                <RaisedButton style={styles.authButton} wide iconsrc={img_googleIcon} size={20}>Sign In with Google</RaisedButton>
+            </ImageBackground>
         </View>
     )
 }
@@ -45,12 +50,18 @@ const styles = {
         justify-content: flex-start;
     `,
     lower: css`
+        position: relative;
         padding-bottom: 32px;
         flex: 1;
         max-height: 260px;
+        height: 270px;
         width: 100%;
         justify-content: flex-end;
         align-items: center;
-        background: #0002;
-    `
+    `,
+    lowerbg: css`
+        position: absolute;
+        width: 375px;
+        align-self: flex-end;
+    `,
 }
