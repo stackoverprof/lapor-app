@@ -36,7 +36,6 @@ const AuthScreen = ({navigation}) => {
 
                 <RaisedButton 
                     onPress={() => navigation.push('RegistrationScreen')}
-                    style={styles.authButton} 
                     iconsrc={img_googleIcon} 
                     size={20}
                     wide 
@@ -53,28 +52,27 @@ export default AuthScreen
 const styles = {
     screen: css`
         flex: 1;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         padding-top: 140px;
     `,
     button: css`
         margin: 6px 0;
     `,
-    authButton: css`
-        margin: 6px 0;
-    `,
     logo: css`
         width: 152px;
         height: 47.2px;
+        margin-bottom: 80px;
     `,
     containerLeft: css`
         width: 100%;
-        padding: 0 48px;
+        padding: 0 38px;
         justify-content: flex-start;
     `,
     lower: css`
-        position: relative;
-        padding-bottom: 32px;
+        position: absolute;
+        bottom: 0;
+        padding-bottom: 40px;
         flex: 1;
         max-height: 260px;
         height: 270px;
