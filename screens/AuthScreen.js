@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, Image, ImageBackground } from 'react-native'
 import { css } from '@emotion/native'
+import c from '../core/style/theme.style'
 
 import RaisedButton from '../components/atomic/RaisedButton'
 import img_googleIcon from '../assets/img/icons/google.png'
@@ -12,6 +13,16 @@ const Auth = ({navigation}) => {
         <View style={styles.screen}>
             <View style={styles.containerLeft}>
                 <Image source={img_logo} style={styles.logo} />
+            </View>
+
+            <View style={styles.containerLeft}>
+                <Text style={styles.intro}>
+                    Tindak kejahatan ada di mana-mana.
+                    {'\n'}
+                    <Text style={styles.intro_bold}>
+                        <Text style={styles.intro_red}>Laporkan!</Text> Saat Anda menemuinya.
+                    </Text>
+                </Text>
             </View>
 
             <ImageBackground 
@@ -63,5 +74,16 @@ const styles = {
         position: absolute;
         width: 375px;
         align-self: flex-end;
+    `,
+    intro: css`
+        font-family: Slab_4;
+        font-size: 24px;
+        max-width: 80%;
+    `,
+    intro_bold: css`
+        font-family: Slab_7;
+    `,
+    intro_red: css`
+        color: ${c.red}
     `,
 }

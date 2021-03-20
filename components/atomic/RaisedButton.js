@@ -76,7 +76,7 @@ const styles = {
         justify-content: flex-start;
     `,
     text: ({iconsrc, icon, size, wide}) => css`
-        font-family: Poppins_600SemiBold;
+        font-family: Poppins_6;
         color: white;
         font-weight: 600;
         font-size: ${(Platform.OS === 'android' ? size - 2 : size).toString()}px;
