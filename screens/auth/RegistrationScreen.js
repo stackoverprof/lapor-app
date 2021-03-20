@@ -11,9 +11,9 @@ import {
     Keyboard
 } from 'react-native'
 
-import RaisedButton from '../components/atomic/RaisedButton'
-import gif_stripe from '../assets/img/gif/stripe.gif'
-import img_ava from '../assets/img/assets/holder-ava.png'
+import RaisedButton from '../../components/atomic/RaisedButton'
+import gif_stripe from '../../assets/img/gif/stripe.gif'
+import img_ava from '../../assets/img/assets/holder-ava.png'
 
 const AuthScreen = ({navigation}) => {
     const [displayName, setDisplayName] = useState('')
@@ -40,28 +40,33 @@ const AuthScreen = ({navigation}) => {
                                 value={displayName}
                                 placeholder="Display Name"
                             />
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={setTelephone}
-                                value={telephone}
-                                onPress={() => setTelephone('+')}
-                                placeholder="Telepon"
-                                keyboardType="phone-pad"
-                            />
+                            <TouchableWithoutFeedback onPress={() => setTelephone('+62')}>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={setTelephone}
+                                    value={telephone}
+                                    placeholder="Telepon"
+                                    keyboardType="phone-pad"
+                                />
+                            </TouchableWithoutFeedback>
                         </View>
 
                         <View style={styles.lower}>
                             <RaisedButton 
-                                onPress={() => navigation.push('RegistrationScreen')}
+                                onPress={() => navigation.push('IntroScreen')}
                                 size={20}
                                 wide 
                             >
-                                Mulai
+                                Lanjut
                             </RaisedButton>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
+            <View style={styles.emailContainer}>
+                <Text style={styles.text1}>Masuk sebagai</Text>
+                <Text style={styles.email}>mail.errbint@gmail.com</Text>
+            </View>
             <Image source={gif_stripe} style={styles.stripebg} />
         </View>
     )
@@ -97,6 +102,19 @@ const styles = {
         padding: 8px 0;
         margin-bottom: 24px;
     `,
+    emailContainer: css`
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 32px;
+    `,
+    text1: css`
+        font-family: Slab_3;
+        font-size: 14px;
+    `,
+    email: css`
+        font-family: Slab_4;
+        font-size: 14px;
+    `,
     form: css`
         flex-direction: column;
     `,
@@ -114,7 +132,7 @@ const styles = {
     `,
     stripebg: css`
         position: relative;
-        bottom: 120px;
+        margin-bottom: 120px;
         width: 100%;
         height: 40px;
         z-index: -1;

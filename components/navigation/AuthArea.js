@@ -1,7 +1,8 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import AuthScreen from '../../screens/AuthScreen'
-import RegistrationScreen from '../../screens/RegistrationScreen'
+import AuthScreen from '../../screens/auth/AuthScreen'
+import RegistrationScreen from '../../screens/auth/RegistrationScreen'
+import IntroScreen from '../../screens/auth/IntroScreen'
 
 
 const AuthArea = () => {
@@ -9,8 +10,9 @@ const AuthArea = () => {
 
     return (
         <AuthStack.Navigator headerMode="none">
-            <AuthStack.Screen name="AuthScreen" component={AuthScreen} options={{ title: "Sign In" }}/>
-            <AuthStack.Screen name="RegistrationScreen" component={RegistrationScreen} options={{ title: "Create Account" }}/>
+            <AuthStack.Screen name="AuthScreen" component={AuthScreen}/>
+            <AuthStack.Screen name="RegistrationScreen" component={RegistrationScreen}/>
+            <AuthStack.Screen name="IntroScreen" component={IntroScreen}/>
         </AuthStack.Navigator>
     )
 }

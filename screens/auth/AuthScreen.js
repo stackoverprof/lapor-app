@@ -1,13 +1,13 @@
 import React from 'react'
 import { css } from '@emotion/native'
 import { Text, View, Image, ImageBackground } from 'react-native'
-import c from '../core/style/theme.style'
+import c from '../../core/style/theme.style'
 
-import RaisedButton from '../components/atomic/RaisedButton'
-import img_googleIcon from '../assets/img/icons/google.png'
-import gif_stripe from '../assets/img/gif/stripe.gif'
-import img_logo from '../assets/img/logo-lapor.png'
-import img_thief from '../assets/img/illus/thief.png'
+import RaisedButton from '../../components/atomic/RaisedButton'
+import img_googleIcon from '../../assets/img/icons/google.png'
+import gif_stripe from '../../assets/img/gif/stripe.gif'
+import img_logo from '../../assets/img/logo-lapor.png'
+import img_thief from '../../assets/img/illus/thief.png'
 
 const AuthScreen = ({navigation}) => {
     return (
