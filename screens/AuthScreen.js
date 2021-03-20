@@ -1,14 +1,15 @@
 import React from 'react'
-import { Text, View, Image, ImageBackground } from 'react-native'
 import { css } from '@emotion/native'
+import { Text, View, Image, ImageBackground } from 'react-native'
 import c from '../core/style/theme.style'
 
 import RaisedButton from '../components/atomic/RaisedButton'
 import img_googleIcon from '../assets/img/icons/google.png'
+import gif_stripe from '../assets/img/gif/stripe.gif'
 import img_logo from '../assets/img/logo-lapor.png'
 import img_thief from '../assets/img/illus/thief.png'
 
-const Auth = ({navigation}) => {
+const AuthScreen = ({navigation}) => {
     return (
         <View style={styles.screen}>
             <View style={styles.containerLeft}>
@@ -20,7 +21,8 @@ const Auth = ({navigation}) => {
                     Tindak kejahatan ada di mana-mana.
                     {'\n'}
                     <Text style={styles.intro_bold}>
-                        <Text style={styles.intro_red}>Laporkan!</Text> Saat Anda menemuinya.
+                        <Text style={styles.intro_red}>Laporkan!{' '}</Text>
+                        Saat Anda menemuinya.
                     </Text>
                 </Text>
             </View>
@@ -30,13 +32,23 @@ const Auth = ({navigation}) => {
                 style={styles.lower} 
                 imageStyle={[styles.lowerbg, {resizeMode: 'stretch', top: undefined, left: undefined}]}
             >
-                <RaisedButton style={styles.authButton} wide iconsrc={img_googleIcon} size={20}>Sign In with Google</RaisedButton>
+                <Image source={gif_stripe} style={styles.stripebg} />
+
+                <RaisedButton 
+                    onPress={() => navigation.push('RegistrationScreen')}
+                    style={styles.authButton} 
+                    iconsrc={img_googleIcon} 
+                    size={20}
+                    wide 
+                >
+                    Sign In with Google
+                </RaisedButton>
             </ImageBackground>
         </View>
     )
 }
 
-export default Auth
+export default AuthScreen
 
 const styles = {
     screen: css`
@@ -85,5 +97,12 @@ const styles = {
     `,
     intro_red: css`
         color: ${c.red}
+    `,
+    stripebg: css`
+        position: absolute;
+        bottom: 120px;
+        width: 100%;
+        height: 40px;
+        z-index: -1;
     `,
 }

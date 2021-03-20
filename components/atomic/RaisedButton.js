@@ -4,9 +4,10 @@ import { css } from '@emotion/native'
 import c from '../../core/style/theme.style'
 import * as Haptics from 'expo-haptics'
 
-const RaisedButton = (props) => {
+export default RaisedButton = (props) => {
     const pressHandler = () => {
         if (Platform.OS === "ios") Haptics.selectionAsync()
+        props.onPress()
     }
 
     return (
@@ -30,8 +31,6 @@ const Content = ({iconsrc, size, children, icon, hide, wide}) => (
         <Text style={styles.text({size, iconsrc, icon, wide})}>{children}</Text>
     </View>
 )
-
-export default RaisedButton
 
 const styles = {
     container: css`

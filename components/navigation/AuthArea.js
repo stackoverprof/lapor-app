@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import Auth from '../../screens/AuthScreen'
-import SignUp from '../../screens/SignUp'
+import AuthScreen from '../../screens/AuthScreen'
+import RegistrationScreen from '../../screens/RegistrationScreen'
 
 
 const AuthArea = () => {
@@ -9,8 +9,8 @@ const AuthArea = () => {
 
     return (
         <AuthStack.Navigator headerMode="none">
-            <AuthStack.Screen name="Auth" component={Auth} options={{ title: "Sign In" }}/>
-            <AuthStack.Screen name="SignUp" component={SignUp} options={{ title: "Create Account" }}/>
+            <AuthStack.Screen name="AuthScreen" component={AuthScreen} options={{ title: "Sign In" }}/>
+            <AuthStack.Screen name="RegistrationScreen" component={RegistrationScreen} options={{ title: "Create Account" }}/>
         </AuthStack.Navigator>
     )
 }
