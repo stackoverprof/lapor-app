@@ -19,6 +19,10 @@ const Auth = ({navigation}) => {
             >
                 Sign In with Google
             </RaisedButton>
+
+            <View style={styles.lower}>
+                <RaisedButton style={styles.authButton} wide iconsrc={googleIcon} size={16}>Sign In with Google</RaisedButton>
+            </View>
         </View>
     )
 }
@@ -34,4 +38,16 @@ const styles = {
     button: css`
         margin: 6px 0;
     `,
+    authButton: css`
+        margin: 6px 0;
+    `,
+    lower: css`
+        position: absolute;
+        bottom: 0;
+        flex: 1;
+        width: 100%;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+    `
 }
