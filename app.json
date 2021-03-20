@@ -20,13 +20,14 @@
       "supportsTablet": true
     },
     "android": {
+      "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF",
-        "permissions": [
-          "com.facebook.fresco:animated-gif:2.0.0"
-        ]
-      }
+        "backgroundColor": "#FFFFFF"
+      },
+      "permissions": [
+        "com.facebook.fresco:animated-gif:2.0.0"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

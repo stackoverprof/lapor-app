@@ -1,6 +1,15 @@
 import React, { useState } from 'react'
 import { css } from '@emotion/native'
-import { View, Text, Image, TextInput } from 'react-native'
+import {
+    View,
+    Text,
+    Image,
+    TextInput,
+    KeyboardAvoidingView,
+    Platform,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native'
 
 import RaisedButton from '../components/atomic/RaisedButton'
 import gif_stripe from '../assets/img/gif/stripe.gif'
@@ -11,37 +20,49 @@ const AuthScreen = ({navigation}) => {
     const [telephone, setTelephone] = useState(null)
     return (
         <View style={styles.screen}>
-            <View style={[styles.container, {marginBottom: 80}]}>
-                <Text style={styles.textWelcome}>Selamat{'\n'}Datang.</Text>
-                <Image source={img_ava} style={styles.ava} />
-            </View>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.keyboardAvoider}
+            >
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View style={styles.inner}>
+                        <View></View>
 
-            <View style={[styles.container, styles.form]}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setDisplayName}
-                    value={displayName}
-                    placeholder="Display Name"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setTelephone}
-                    value={telephone}
-                    placeholder="Telepon"
-                    keyboardType="phone-pad"
-                />
-            </View>
+                        <View style={[styles.container, styles.upper]}>
+                            <Text style={styles.textWelcome}>Selamat{'\n'}Datang.</Text>
+                            <Image source={img_ava} style={styles.ava} />
+                        </View>
 
-            <View style={styles.lower}>
-                <Image source={gif_stripe} style={styles.stripebg} />
-                <RaisedButton 
-                    onPress={() => navigation.push('RegistrationScreen')}
-                    size={20}
-                    wide 
-                >
-                    Mulai
-                </RaisedButton>
-            </View>
+                        <View style={[styles.container, styles.form]}>
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={setDisplayName}
+                                value={displayName}
+                                placeholder="Display Name"
+                            />
+                            <TextInput
+                                style={styles.input}
+                                onChangeText={setTelephone}
+                                value={telephone}
+                                onPress={() => setTelephone('+')}
+                                placeholder="Telepon"
+                                keyboardType="phone-pad"
+                            />
+                        </View>
+
+                        <View style={styles.lower}>
+                            <RaisedButton 
+                                onPress={() => navigation.push('RegistrationScreen')}
+                                size={20}
+                                wide 
+                            >
+                                Mulai
+                            </RaisedButton>
+                        </View>
+                    </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+            <Image source={gif_stripe} style={styles.stripebg} />
         </View>
     )
 }
@@ -50,10 +71,23 @@ export default AuthScreen
 
 const styles = {
     screen: css`
+        position: relative;
         flex: 1;
-        justify-content: flex-start;
+        justify-content: flex-end;
+    `,
+    keyboardAvoider: css`
+        position: absolute;
+        top: 0;
+        flex: 1;
+        width: 100%;
+        height: 100%;
+    `,
+    inner: css`
+        flex: 1;
+        margin-top: 58px;
+        width: 100%;
+        justify-content: space-between;
         align-items: center;
-        padding-top: 120px;
     `,
     input: css`
         font-family: Slab_4;
@@ -66,9 +100,10 @@ const styles = {
     form: css`
         flex-direction: column;
     `,
+    upper: css`
+        margin-bottom: 40px;
+    `,
     lower: css`
-        position: absolute;
-        bottom: 0;
         padding-bottom: 40px;
         flex: 1;
         max-height: 260px;
@@ -78,7 +113,7 @@ const styles = {
         align-items: center;
     `,
     stripebg: css`
-        position: absolute;
+        position: relative;
         bottom: 120px;
         width: 100%;
         height: 40px;

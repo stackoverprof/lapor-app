@@ -66,7 +66,7 @@ const styles = {
     `,
     containerLeft: css`
         width: 100%;
-        padding: 0 38px;
+        padding: 0 36px;
         justify-content: flex-start;
     `,
     lower: css`
