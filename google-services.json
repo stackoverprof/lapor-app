@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "445860755358",
+    "project_id": "pjpb-lapor",
+    "storage_bucket": "pjpb-lapor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445860755358:android:c8692019f11f5810be488f",
+        "android_client_info": {
+          "package_name": "com.pjpb.lapor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445860755358-qnasjnvi78prrbvv284k708m2tir1csg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAptr1oUp36xWMFF_AcQvMIQKC_J5mQ-7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445860755358-qnasjnvi78prrbvv284k708m2tir1csg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

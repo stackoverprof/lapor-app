@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
@@ -27,10 +28,21 @@
       },
       "permissions": [
         "com.facebook.fresco:animated-gif:2.0.0"
-      ]
+      ],
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyCeKuhmqOzc8-j7u4JnzVWf7INsYKH3OpY",
+          "authDomain": "pjpb-lapor.firebaseapp.com",
+          "projectId": "pjpb-lapor",
+          "storageBucket": "pjpb-lapor.appspot.com",
+          "messagingSenderId": "445860755358",
+          "appId": "1:445860755358:web:cc3f473619c0cbedbe488f"
+        }
+      }
     }
   }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>445860755358-9dhls40676h5n1injkeponjpg9snfeus.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.445860755358-9dhls40676h5n1injkeponjpg9snfeus</string>
+	<key>API_KEY</key>
+	<string>AIzaSyACSsFA1U-vAym2m0z7MrmVrWPTjKdhoyU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>445860755358</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.pjpb.lapor</string>
+	<key>PROJECT_ID</key>
+	<string>pjpb-lapor</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pjpb-lapor.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:445860755358:ios:bad518d9eea03988be488f</string>
+</dict>
+</plist>

@@ -2,6 +2,7 @@ import React from 'react'
 import { css } from '@emotion/native'
 import { Text, View, Image, ImageBackground } from 'react-native'
 import c from '../../core/style/theme.style'
+import { useAuth } from '../../core/contexts/AuthContext'
 
 import RaisedButton from '../../components/atomic/RaisedButton'
 import img_googleIcon from '../../assets/img/icons/google.png'
@@ -10,6 +11,13 @@ import img_logo from '../../assets/img/logo-lapor.png'
 import img_thief from '../../assets/img/illus/thief.png'
 
 const AuthScreen = ({navigation}) => {
+    const { authMethods, setErrorCode } = useAuth()
+
+    const handleGoogleAuth = () => {
+        setErrorCode('')
+        authMethods.google({navigation})
+    }
+    
     return (
         <View style={styles.screen}>
             <View style={styles.containerLeft}>
@@ -35,7 +43,7 @@ const AuthScreen = ({navigation}) => {
                 <Image source={gif_stripe} style={styles.stripebg} />
 
                 <RaisedButton 
-                    onPress={() => navigation.push('RegistrationScreen')}
+                    onPress={handleGoogleAuth}
                     iconsrc={img_googleIcon} 
                     size={20}
                     wide 

@@ -6,6 +6,8 @@ import AppLoading from 'expo-app-loading'
 import AuthArea from './components/navigation/AuthArea'
 import AppArea from './components/navigation/AppArea'
 
+import AuthProvider from './core/contexts/AuthContext'
+
 import { useFonts, Poppins_600SemiBold as Poppins_6 } from '@expo-google-fonts/poppins'
 import { 
     RobotoSlab_300Light as Slab_3,
@@ -26,12 +28,14 @@ const App = () => {
     if (!fontsLoaded) return <AppLoading />
 
     return (
-        <NavigationContainer>
-            <RootStack.Navigator headerMode="none">
-                <RootStack.Screen name="Auth" component={AuthArea} options={{ animationEnabled: false }}/>
-                <RootStack.Screen name="App" component={AppArea} options={{ animationEnabled: false }}/>
-            </RootStack.Navigator>
-        </NavigationContainer>
+        <AuthProvider>
+            <NavigationContainer>
+                <RootStack.Navigator headerMode="none">
+                    <RootStack.Screen name="Auth" component={AuthArea} options={{ animationEnabled: false }}/>
+                    <RootStack.Screen name="App" component={AppArea} options={{ animationEnabled: false }}/>
+                </RootStack.Navigator>
+            </NavigationContainer>
+        </AuthProvider>
     )
 }
 
