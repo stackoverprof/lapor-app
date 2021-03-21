@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "lapor",
+    "name": "Lapor",
     "slug": "lapor",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,7 +23,7 @@
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#E30004"
       },
       "permissions": [
         "com.facebook.fresco:animated-gif:2.0.0"

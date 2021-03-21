@@ -21,11 +21,14 @@ const AuthScreen = ({navigation}) => {
 
             <View style={styles.containerLeft}>
                 <Text style={styles.intro}>
-                    Tindak kejahatan ada di mana-mana.
+                    Tindak kejahatan
+                    {'\n'}
+                    ada di mana-mana.
                     {'\n'}
                     <Text style={styles.intro_bold}>
-                        <Text style={styles.intro_red}>Laporkan!{' '}</Text>
-                        Saat Anda menemuinya.
+                        <Text style={styles.intro_red}>Laporkan!{' '}</Text>saat
+                        {'\n'}
+                        Anda menemuinya.
                     </Text>
                 </Text>
             </View>

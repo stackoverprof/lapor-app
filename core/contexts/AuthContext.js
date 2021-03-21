@@ -3,17 +3,17 @@ import * as Google from 'expo-google-app-auth'
 
 const AuthContext = React.createContext()
 
-const fetchDB = () => {
-    //if no result, berarti new user
-    return {
-        id: '100015577451492073996',
-        email: 'rbintang.bagus11@gmail.com',
-        photoUrl: 'https://firebasestorage.googleapis.com/v0/b/areks-gm.appspot.com/o/Users%2Fprofile-pictures%2Fbintangbagus01-09592f3b.gif?alt=media&token=096e8d3b-721f-4c6d-ba1d-5f0f8c84da34',
-        username: '',
-        tel: '',
-        fullName: '',
-    }
-}
+// const fetchDB = () => {
+//     //if no result, berarti new user
+//     return {
+//         id: '100015577451492073996',
+//         email: 'rbintang.bagus11@gmail.com',
+//         photoUrl: 'https://firebasestorage.googleapis.com/v0/b/areks-gm.appspot.com/o/Users%2Fprofile-pictures%2Fbintangbagus01-09592f3b.gif?alt=media&token=096e8d3b-721f-4c6d-ba1d-5f0f8c84da34',
+//         username: '',
+//         tel: '',
+//         fullName: '',
+//     }
+// }
 
 const AuthProvider = ({children}) => {
     const [authState, setAuthState] = useState('initial')
@@ -79,6 +79,7 @@ const AuthProvider = ({children}) => {
     return (
         <AuthContext.Provider value={{
             authState,
+            accessToken,
             user,
             authRef,
             isNew,
