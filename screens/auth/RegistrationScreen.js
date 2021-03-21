@@ -8,6 +8,7 @@ import {
     TextInput,
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
+    ImageBackground,
     Keyboard
 } from 'react-native'
 
@@ -16,12 +17,15 @@ import { validateUsername, validateTelephone } from '../../core/utils/validator'
 import RaisedButton from '../../components/atomic/RaisedButton'
 import gif_stripe from '../../assets/img/gif/stripe.gif'
 import img_ava from '../../assets/img/assets/holder-ava.png'
+import { useAuth } from '../../core/contexts/AuthContext'
 
 const AuthScreen = ({navigation}) => {
     const [username, setUsername] = useState('')
     const [telephone, setTelephone] = useState('')
     const [invalidUsername, setInvalidUsername] = useState('')
     const [invalidTelephone, setInvalidTelephone] = useState('')
+
+    const { user } = useAuth()
 
     const initialFillUp = () => {
         if (!telephone) setTelephone('+62')
@@ -39,7 +43,9 @@ const AuthScreen = ({navigation}) => {
 
                         <View style={[styles.container, styles.upper]}>
                             <Text style={styles.textWelcome}>Selamat{'\n'}Datang.</Text>
-                            <Image source={img_ava} style={styles.ava} />
+                            <ImageBackground source={img_ava} style={styles.avaContainer}>
+                                <Image source={{uri: user.photoURL}} style={styles.ava} />
+                            </ImageBackground>
                         </View>
 
                         <View style={[styles.container, styles.form]}>
@@ -81,8 +87,8 @@ const AuthScreen = ({navigation}) => {
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
             <View style={styles.emailContainer}>
-                <Text style={styles.text1}>Masuk sebagai</Text>
-                <Text style={styles.email}>mail.errbint@gmail.com</Text>
+                <Text style={styles.text1}>Akun terhubung</Text>
+                <Text style={styles.email}>{user.email}</Text>
             </View>
             <Image source={gif_stripe} style={styles.stripebg} />
         </View>
@@ -177,5 +183,13 @@ const styles = {
     ava: css`
         width: 100px;
         height: 100px;
+        border-radius: 50px;
+        overflow: hidden;
+    `,
+    avaContainer: css`
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        overflow: hidden;
     `,
 }

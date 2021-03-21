@@ -8,8 +8,11 @@ import img_googleIcon from '../../assets/img/icons/google.png'
 import gif_stripe from '../../assets/img/gif/stripe.gif'
 import img_logo from '../../assets/img/logo-lapor.png'
 import img_thief from '../../assets/img/illus/thief.png'
+import { useAuth } from '../../core/contexts/AuthContext'
 
 const AuthScreen = ({navigation}) => {
+    const { authMethods } = useAuth()
+
     return (
         <View style={styles.screen}>
             <View style={styles.containerLeft}>
@@ -35,7 +38,7 @@ const AuthScreen = ({navigation}) => {
                 <Image source={gif_stripe} style={styles.stripebg} />
 
                 <RaisedButton 
-                    onPress={() => navigation.push('RegistrationScreen')}
+                    onPress={() => authMethods.google({navigation})}
                     iconsrc={img_googleIcon} 
                     size={20}
                     wide 
