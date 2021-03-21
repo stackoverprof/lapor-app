@@ -11,10 +11,10 @@ import img_logo from '../../assets/img/logo-lapor.png'
 import img_thief from '../../assets/img/illus/thief.png'
 
 const AuthScreen = ({navigation}) => {
-    const { authMethods, setErrorCode } = useAuth()
+    const { authMethods, setErrorAuth } = useAuth()
 
     const handleGoogleAuth = () => {
-        setErrorCode('')
+        setErrorAuth('')
         authMethods.google({navigation})
     }
     

@@ -1,8 +1,11 @@
 import * as FirebaseCore from 'expo-firebase-core'
+import * as firebase from 'firebase'
 
-console.log(FirebaseCore)
+firebase.initializeApp(FirebaseCore.DEFAULT_APP_OPTIONS)
 
-export default FirebaseCore
-export const DB = FirebaseCore.firestore()
-export const AUTH = FirebaseCore.auth()
-export const GoogleAUTH = new FirebaseCore.auth.GoogleAuthProvider()
+console.log(firebase)
+
+export default firebase
+export const DB = firebase.firestore()
+export const AUTH = firebase.auth()
+export const GoogleAUTH = new firebase.auth.GoogleAuthProvider()
