@@ -1,6 +1,6 @@
 export const validateUsername = (value) => {
     if (!value) {
-        return 'value tidak boleh kosong'
+        return 'Username tidak boleh kosong'
     } else if (value.length > 20) {
         return 'Maksimal 20 karakter'
     } else if (value.length < 4) {
@@ -20,7 +20,7 @@ export const validateUsername = (value) => {
 
 export const validateTelephone = (value) => {
     if (!value) {
-        return 'value tidak boleh kosong'
+        return 'Telepon tidak boleh kosong'
     } else {
         return ''
     }

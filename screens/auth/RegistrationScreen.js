@@ -23,12 +23,17 @@ const AuthScreen = ({navigation}) => {
     const [username, setUsername] = useState('')
     const [telephone, setTelephone] = useState('')
     const [invalidUsername, setInvalidUsername] = useState('')
-    const [invalidTelephone, setInvalidTelephone] = useState('')
+    const [invalidTelephone, setInvalidTelephone] = useState(null)
 
     const { user } = useAuth()
 
     const initialFillUp = () => {
         if (!telephone) setTelephone('+62')
+    }
+
+    const checkUsername = (value) => {
+        setInvalidUsername(validateUsername(value))
+        setUsername(value)
     }
 
     return (
@@ -44,7 +49,7 @@ const AuthScreen = ({navigation}) => {
                         <View style={[styles.container, styles.upper]}>
                             <Text style={styles.textWelcome}>Selamat{'\n'}Datang.</Text>
                             <ImageBackground source={img_ava} style={styles.avaContainer}>
-                                <Image source={{uri: user.photoURL}} style={styles.ava} />
+                                <Image source={{uri: user.photoUrl}} style={styles.ava} />
                             </ImageBackground>
                         </View>
 
@@ -52,10 +57,9 @@ const AuthScreen = ({navigation}) => {
                             <View style={styles.inputContainer}>
                                 <TextInput
                                     style={styles.input}
-                                    onChangeText={setUsername}
+                                    onChangeText={checkUsername}
                                     value={username}
                                     placeholder="Pilih Username"
-                                    onBlur={() => setInvalidUsername(validateUsername(username))}
                                     />
                                 {!!invalidUsername && <Text style={styles.invalid}>{invalidUsername}</Text>}
                             </View>
@@ -70,7 +74,13 @@ const AuthScreen = ({navigation}) => {
                                     onFocus={initialFillUp}
                                     onBlur={() => setInvalidTelephone(validateTelephone(telephone))}
                                 />
-                                {!!invalidTelephone && <Text style={styles.invalid}>{invalidTelephone}</Text>}
+                                {!!invalidTelephone ?
+                                    <Text style={styles.invalid}>{invalidTelephone}</Text>
+                                : invalidTelephone !== null ?
+                                    <Text style={[styles.invalid, styles.black]}>Pastikan nomor aktif - untuk keadaan darurat</Text>
+                                :
+                                    <></>
+                                }
                             </View>
                         </View>
 
@@ -133,6 +143,9 @@ const styles = {
         font-size: 12px;
         margin-top: 4px;
         color: ${c.red};
+    `,
+    black: css`
+        color: ${c.black};
     `,
     emailContainer: css`
         justify-content: center;
