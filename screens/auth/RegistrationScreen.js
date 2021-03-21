@@ -1,27 +1,36 @@
 import React, { useState } from 'react'
 import { css } from '@emotion/native'
+import c from '../../core/style/theme.style'
 import {
     View,
     Text,
     Image,
     TextInput,
     KeyboardAvoidingView,
-    Platform,
     TouchableWithoutFeedback,
     Keyboard
 } from 'react-native'
+
+import { validateUsername, validateTelephone } from '../../core/utils/validator'
 
 import RaisedButton from '../../components/atomic/RaisedButton'
 import gif_stripe from '../../assets/img/gif/stripe.gif'
 import img_ava from '../../assets/img/assets/holder-ava.png'
 
 const AuthScreen = ({navigation}) => {
-    const [displayName, setDisplayName] = useState('')
-    const [telephone, setTelephone] = useState(null)
+    const [username, setUsername] = useState('')
+    const [telephone, setTelephone] = useState('')
+    const [invalidUsername, setInvalidUsername] = useState('')
+    const [invalidTelephone, setInvalidTelephone] = useState('')
+
+    const initialFillUp = () => {
+        if (!telephone) setTelephone('+62')
+    }
+
     return (
         <View style={styles.screen}>
             <KeyboardAvoidingView
-                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                behavior="padding"
                 style={styles.keyboardAvoider}
             >
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -34,21 +43,29 @@ const AuthScreen = ({navigation}) => {
                         </View>
 
                         <View style={[styles.container, styles.form]}>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={setDisplayName}
-                                value={displayName}
-                                placeholder="Display Name"
-                            />
-                            <TouchableWithoutFeedback onPress={() => setTelephone('+62')}>
+                            <View style={styles.inputContainer}>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={setUsername}
+                                    value={username}
+                                    placeholder="Pilih Username"
+                                    onBlur={() => setInvalidUsername(validateUsername(username))}
+                                    />
+                                {!!invalidUsername && <Text style={styles.invalid}>{invalidUsername}</Text>}
+                            </View>
+                            <View style={styles.inputContainer}>
                                 <TextInput
                                     style={styles.input}
                                     onChangeText={setTelephone}
                                     value={telephone}
                                     placeholder="Telepon"
                                     keyboardType="phone-pad"
+                                    autoCompleteType="tel"
+                                    onFocus={initialFillUp}
+                                    onBlur={() => setInvalidTelephone(validateTelephone(telephone))}
                                 />
-                            </TouchableWithoutFeedback>
+                                {!!invalidTelephone && <Text style={styles.invalid}>{invalidTelephone}</Text>}
+                            </View>
                         </View>
 
                         <View style={styles.lower}>
@@ -94,13 +111,22 @@ const styles = {
         justify-content: space-between;
         align-items: center;
     `,
+    inputContainer: css`
+        width: 100%;
+        margin-bottom: 24px;
+    `,
     input: css`
         font-family: Slab_4;
         font-size: 24px;
         border-bottom-width: 2px;
         width: 100%;
         padding: 8px 0;
-        margin-bottom: 24px;
+    `,
+    invalid: css`
+        font-family: Poppins_3;
+        font-size: 12px;
+        margin-top: 4px;
+        color: ${c.red};
     `,
     emailContainer: css`
         justify-content: center;
