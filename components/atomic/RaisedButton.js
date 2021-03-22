@@ -14,7 +14,7 @@ export default RaisedButton = (props) => {
         <View style={[styles.container, props.style, props.wide ? {width: '90%'} : '']}>
             <View style={[styles.wall, props.icon ? styles.clearance : '', {backgroundColor: props.color ? props.color : c.red}, props.wide ? {width: '100%'} : '']}><Content {...props} hide/></View>
             <View style={[styles.wall, styles.layer, props.icon ? styles.clearance : '', props.wide ? {width: '100%'} : '']}><Content {...props} hide/></View>
-            <Pressable 
+            <Pressable
                 style={({pressed}) => [styles.main, pressed ? styles.pressed : '', props.icon ? styles.clearance : '', {backgroundColor: props.color ? props.color : c.red}]}
                 onPress={pressHandler}
             >

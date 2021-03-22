@@ -45,7 +45,7 @@ const AuthProvider = ({children}) => {
     }
 
     const procedures = {
-        newUser: async (res, navigation) => {
+        newUser: async (res, afterSignedUp) => {
             console.log('new user')
             setIsNew(true)
             setUser({
@@ -60,15 +60,17 @@ const AuthProvider = ({children}) => {
             setAccessToken(res.accessToken)
             setAuthState('user')
             //insert data ke db user
-            navigation.push('RegistrationScreen')
+            afterSignedUp()
         },
-        existingUser: async (res, data) => {
+        existingUser: async (res, data, afterSignedIn) => {
             console.log('existing')
             setIsNew(false)
             setUser(data)
             await storeToken.save(res.accessToken)
             setAccessToken(res.accessToken)
             setAuthState('user')
+
+            afterSignedIn()
         },
         continueSession: async (id) => { //should be token
             //validate token first, true then: 
@@ -82,9 +84,9 @@ const AuthProvider = ({children}) => {
     }
 
     const authMethods = {
-        google : async ({navigation}) => {
+        google : async ({afterSignedIn = () => {}, afterSignedUp = () => {}}) => {
             
-            Google.logInAsync({
+            return Google.logInAsync({
                 androidClientId: '864888909882-l3iqtf3947l9nb2s3bgh12gkkat2citv.apps.googleusercontent.com',
                 iosClientId: '864888909882-52dg581j3mac0l5oigutmfscndpdc95a.apps.googleusercontent.com',
                 scopes: ['profile', 'email'],
@@ -92,10 +94,10 @@ const AuthProvider = ({children}) => {
             .then(async res => {
                 if (res.type === 'success') {
                     await fetchToServerDB(res.user.id) //should be using token
-                    .then(data => procedures.existingUser(res, data))
-                    .catch(() => procedures.newUser(res, navigation))
+                    .then(data => procedures.existingUser(res, data, afterSignedIn))
+                    .catch(() => procedures.newUser(res, afterSignedUp))
                 } else {
-                    return console.log('cancelled')
+                    console.log('cancelled')
                 }
             })
             .catch(err => console.log(err))           
@@ -113,17 +115,14 @@ const AuthProvider = ({children}) => {
 
     useEffect(() => {
         const syncSession = async () => {
-            storeToken.delete()
+            storeToken.delete() //sementara, always reset token
             const savedToken = await storeToken.get()
             if (savedToken) procedures.continueSession('113814096624824806623')
+            else console.log('no token stored')
         }
 
         syncSession()
     }, [])
-
-    useEffect(() => {
-        console.log('token: ' + accessToken)
-    }, [accessToken])
 
     return (
         <AuthContext.Provider value={{

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/native'
 import c from '../../core/style/theme.style'
 import {
@@ -9,7 +9,8 @@ import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
     ImageBackground,
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native'
 
 import { validateUsername, validateTelephone } from '../../core/utils/validator'
@@ -43,6 +44,22 @@ const AuthScreen = ({navigation}) => {
         setInvalidTelephone(validateTelephone(value))
         setTelephone(value)
     }
+
+    useEffect(() => {
+        navigation.addListener('beforeRemove', (e) => {
+            e.preventDefault()
+    
+            // Prompt the user before leaving the screen
+            Alert.alert(
+                'Tinggalkan pendaftaran?',
+                'Yakin untuk membatalkan pendaftaran dan kembali ke depan?',
+                [
+                  { text: 'Batal', style: 'cancel', onPress: () => {} },
+                  { text: 'Yakin', style: 'destructive', onPress: () => navigation.dispatch(e.data.action) }
+                ]
+            )
+        })
+    }, [navigation])
 
     return (
         <View style={styles.screen}>

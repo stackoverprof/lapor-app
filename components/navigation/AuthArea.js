@@ -4,7 +4,6 @@ import AuthScreen from '../../screens/auth/AuthScreen'
 import RegistrationScreen from '../../screens/auth/RegistrationScreen'
 import IntroScreen from '../../screens/auth/IntroScreen'
 
-
 const AuthArea = () => {
     const AuthStack = createStackNavigator()
 

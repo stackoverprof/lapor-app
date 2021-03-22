@@ -1,18 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { css } from '@emotion/native'
 import { Text, View, Image, ImageBackground } from 'react-native'
 import c from '../../core/style/theme.style'
 
-import RaisedButton from '../../components/atomic/RaisedButton'
-import img_googleIcon from '../../assets/img/icons/google.png'
 import gif_stripe from '../../assets/img/gif/stripe.gif'
 import img_logo from '../../assets/img/logo-lapor.png'
 import img_thief from '../../assets/img/illus/thief.png'
-import { useAuth } from '../../core/contexts/AuthContext'
+import GoogleButton from '../../components/atomic/GoogleButton'
 
 const AuthScreen = ({navigation}) => {
-    const [loading_auth, setLoading_auth] = useState(false)
-    const { authMethods } = useAuth()
 
     return (
         <View style={styles.screen}>
@@ -41,18 +37,10 @@ const AuthScreen = ({navigation}) => {
             >
                 <Image source={gif_stripe} style={styles.stripebg} />
 
-                <RaisedButton 
-                    onPress={() => {
-                        authMethods.google({navigation})
-                        setLoading_auth(true)
-                    }} //loading
-                    iconsrc={img_googleIcon} 
-                    size={20}
-                    loading={loading_auth}
-                    wide
-                >
-                    Sign In with Google
-                </RaisedButton>
+                <GoogleButton 
+                    afterSignedUp={() => navigation.push('RegistrationScreen')}
+                    afterSignedIn={() => navigation.navigate('AppArea')}
+                />
             </ImageBackground>
         </View>
     )
