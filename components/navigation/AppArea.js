@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import HomeScreen from '../../screens/app/HomeScreen'
@@ -6,8 +6,12 @@ import CreatorScreen from '../../screens/app/CreatorScreen'
 import UrgentScreen from '../../screens/app/UrgentScreen'
 import DashboardScreen from '../../screens/app/DashboardScreen'
 
-const AppArea = () => {
-    const AppArea = createBottomTabNavigator();
+const AppArea = (props) => {
+    const AppArea = createBottomTabNavigator()
+
+    useEffect(() => {
+        props.route.params.setHasEnteredApp(true)
+    }, [])
 
     return (
         <AppArea.Navigator screenOptions={{headerShown: true}}>

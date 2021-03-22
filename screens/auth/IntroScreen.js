@@ -12,16 +12,16 @@ const IntroScreen = ({navigation}) => {
             <View style={styles.inner}>
                 <View></View>
                 <View style={styles.lower}>
-                    <RaisedButton 
+                    <RaisedButton
                         onPress={() => navigation.navigate('AppArea')}
                         size={20}
-                        wide 
+                        wide
                     >
                         Mulai
                     </RaisedButton>
                 </View>
             </View>
-            <Image source={gif_stripe} style={styles.stripebg} />
+            <Image source={gif_stripe} style={styles.stripebg}/>
         </View>
     )
 }
