@@ -13,7 +13,7 @@ const sampleData = {
     fullName: 'R.Bintang Bagus Putra Angkasa',
 }
 
-const fetchDB = (id) => {
+const fetchToServerDB = (id) => {
     return new Promise((resolve, reject) => {
         if (id === '113814096624824806623') {
             resolve(sampleData)
@@ -38,11 +38,14 @@ const AuthProvider = ({children}) => {
             const value = await SecureStore.getItemAsync('accessToken')
             if (value) return value
             else return ''
+        },
+        delete: async () => {
+            await SecureStore.deleteItemAsync('accessToken')
         }
     }
 
     const procedures = {
-        newUser: (res, navigation) => {
+        newUser: async (res, navigation) => {
             console.log('new user')
             setIsNew(true)
             setUser({
@@ -53,14 +56,29 @@ const AuthProvider = ({children}) => {
                 tel: '',
                 fullName: `${res.user.givenName} ${res.user.familyName}`
             })
+            await storeToken.save(res.accessToken)
+            setAccessToken(res.accessToken)
+            setAuthState('user')
             //insert data ke db user
             navigation.push('RegistrationScreen')
         },
-        existingUser: (res) => {
-            console.log('existing user')
+        existingUser: async (res, data) => {
+            console.log('existing')
+            setIsNew(false)
+            setUser(data)
+            await storeToken.save(res.accessToken)
+            setAccessToken(res.accessToken)
+            setAuthState('user')
+        },
+        continueSession: async (id) => { //should be token
+            //validate token first, true then: 
+            const res = await fetchToServerDB(id)
             setIsNew(false)
             setUser(res)
-        }
+            setAuthState('user')
+            //,false then: back to all initial
+            //storeToken.delete()
+        } 
     }
 
     const authMethods = {
@@ -73,14 +91,9 @@ const AuthProvider = ({children}) => {
             })
             .then(async res => {
                 if (res.type === 'success') {
-                    setAccessToken(res.accessToken)
-                    storeToken.save(res.accessToken)
-
-                    await fetchDB(res.user.id)
-                    .then(res => procedures.existingUser(res))
+                    await fetchToServerDB(res.user.id) //should be using token
+                    .then(data => procedures.existingUser(res, data))
                     .catch(() => procedures.newUser(res, navigation))
-
-                    setAuthState('user')
                 } else {
                     return console.log('cancelled')
                 }
@@ -90,7 +103,7 @@ const AuthProvider = ({children}) => {
         },
         
         signOut : () => {
-            //find out how to singout
+            //find out how to signout
             //delete token
             setUser({})
             setAuthState('guest')
@@ -100,17 +113,17 @@ const AuthProvider = ({children}) => {
 
     useEffect(() => {
         const syncSession = async () => {
+            storeToken.delete()
             const savedToken = await storeToken.get()
-            setAccessToken(savedToken)
+            if (savedToken) procedures.continueSession('113814096624824806623')
         }
 
         syncSession()
     }, [])
 
     useEffect(() => {
-        console.log('auth state: ' + authState)
-        console.log('new user: ' + isNew)
-    }, [authState, isNew])
+        console.log('token: ' + accessToken)
+    }, [accessToken])
 
     return (
         <AuthContext.Provider value={{

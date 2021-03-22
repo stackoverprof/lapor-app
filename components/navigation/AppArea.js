@@ -7,15 +7,15 @@ import UrgentScreen from '../../screens/app/UrgentScreen'
 import DashboardScreen from '../../screens/app/DashboardScreen'
 
 const AppArea = () => {
-    const AppTabs = createBottomTabNavigator();
+    const AppArea = createBottomTabNavigator();
 
     return (
-        <AppTabs.Navigator screenOptions={{headerShown: true}}>
-            <AppTabs.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Beranda' }}/>
-            <AppTabs.Screen name="CreatorScreen" component={CreatorScreen} options={{ title: 'Lapor' }}/>
-            <AppTabs.Screen name="UrgentScreen" component={UrgentScreen} options={{ title: 'Darurat' }}/>
-            <AppTabs.Screen name="DashboardScreen" component={DashboardScreen} options={{ title: 'Dasbor' }}/>
-        </AppTabs.Navigator>
+        <AppArea.Navigator screenOptions={{headerShown: true}}>
+            <AppArea.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Beranda' }}/>
+            <AppArea.Screen name="CreatorScreen" component={CreatorScreen} options={{ title: 'Lapor' }}/>
+            <AppArea.Screen name="UrgentScreen" component={UrgentScreen} options={{ title: 'Darurat' }}/>
+            <AppArea.Screen name="DashboardScreen" component={DashboardScreen} options={{ title: 'Dasbor' }}/>
+        </AppArea.Navigator>
     )
 }
 

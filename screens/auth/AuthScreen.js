@@ -41,7 +41,7 @@ const AuthScreen = ({navigation}) => {
                 <Image source={gif_stripe} style={styles.stripebg} />
 
                 <RaisedButton 
-                    onPress={() => authMethods.google({navigation})}
+                    onPress={() => authMethods.google({navigation})} //loading
                     iconsrc={img_googleIcon} 
                     size={20}
                     wide 

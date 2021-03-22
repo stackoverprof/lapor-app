@@ -10,10 +10,11 @@ const RootNavigation = () => {
     
     return (
         <RootStack.Navigator headerMode="none">
-            {authState !== 'user' || isNew ? (
-                <RootStack.Screen name="Auth" component={AuthArea} options={{ animationEnabled: false }}/>
-            ):(
-                <RootStack.Screen name="App" component={AppArea} options={{ animationEnabled: false }}/>
+            {(authState !== 'user' || isNew) && (
+                <RootStack.Screen name="AuthArea" component={AuthArea} options={{ animationEnabled: false }}/>
+            )}
+            {authState === 'user' && (
+                <RootStack.Screen name="AppArea" component={AppArea} options={{ animationEnabled: false }}/>
             )}
         </RootStack.Navigator>
     )

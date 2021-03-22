@@ -24,16 +24,24 @@ const AuthScreen = ({navigation}) => {
     const [telephone, setTelephone] = useState('')
     const [invalidUsername, setInvalidUsername] = useState('')
     const [invalidTelephone, setInvalidTelephone] = useState(null)
+    const [warnMinimal, setWarnMinimal] = useState(false)
 
     const { user } = useAuth()
 
     const initialFillUp = () => {
         if (!telephone) setTelephone('+62')
+        if (invalidTelephone === null) setInvalidTelephone('')
     }
 
     const checkUsername = (value) => {
-        setInvalidUsername(validateUsername(value))
+        setInvalidUsername(validateUsername(value, warnMinimal))
+        if (value.length > 3) setWarnMinimal(true)
         setUsername(value)
+    }
+
+    const checkTelephone = (value) => {
+        setInvalidTelephone(validateTelephone(value))
+        setTelephone(value)
     }
 
     return (
@@ -60,19 +68,22 @@ const AuthScreen = ({navigation}) => {
                                     onChangeText={checkUsername}
                                     value={username}
                                     placeholder="Pilih Username"
+                                    onBlur={() => {
+                                        setInvalidUsername(validateUsername(username))
+                                        setWarnMinimal(true)
+                                    }}
                                     />
                                 {!!invalidUsername && <Text style={styles.invalid}>{invalidUsername}</Text>}
                             </View>
                             <View style={styles.inputContainer}>
                                 <TextInput
                                     style={styles.input}
-                                    onChangeText={setTelephone}
+                                    onChangeText={checkTelephone}
                                     value={telephone}
                                     placeholder="Telepon"
                                     keyboardType="phone-pad"
                                     autoCompleteType="tel"
                                     onFocus={initialFillUp}
-                                    onBlur={() => setInvalidTelephone(validateTelephone(telephone))}
                                 />
                                 {!!invalidTelephone ?
                                     <Text style={styles.invalid}>{invalidTelephone}</Text>
@@ -86,7 +97,7 @@ const AuthScreen = ({navigation}) => {
 
                         <View style={styles.lower}>
                             <RaisedButton 
-                                onPress={() => navigation.push('IntroScreen')}
+                                onPress={() => navigation.push('IntroScreen')} // [TODO] : Only when valid and success storing, loading
                                 size={20}
                                 wide 
                             >
