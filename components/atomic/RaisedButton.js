@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Pressable, Platform, Image } from 'react-native'
+import { View, Text, Pressable, Platform, Image, ActivityIndicator } from 'react-native'
 import { css } from '@emotion/native'
 import c from '../../core/style/theme.style'
 import * as Haptics from 'expo-haptics'
@@ -24,11 +24,18 @@ export default RaisedButton = (props) => {
     )
 }
 
-const Content = ({iconsrc, size, children, icon, hide, wide}) => (
+const Content = ({iconsrc, size, children, icon, hide, wide, loading}) => (
     <View style={[styles.wrap, hide ? {opacity: 0} : '']}>
-        {iconsrc && <Image source={iconsrc} style={styles.icon({size})} />}
-        {icon}
-        <Text style={styles.text({size, iconsrc, icon, wide})}>{children}</Text>
+        {loading && (
+            <View style={styles.spinnerContainer}>
+                <ActivityIndicator color={c.white}/>
+            </View>
+        )}
+        <View style={[styles.wrap, loading ? styles.hide : '']}>
+            {iconsrc && <Image source={iconsrc} style={styles.icon({size})} />}
+            {icon}
+            <Text style={styles.text({size, iconsrc, icon, wide})}>{children}</Text>
+        </View>
     </View>
 )
 
@@ -58,6 +65,12 @@ const styles = {
         width: ${(size*2).toString()}px;
         height: ${(size*2).toString()}px;
         margin: 6px 0 6px 8px;
+    `,
+    spinnerContainer: css`
+        position: absolute;
+    `,
+    hide: css`
+        opacity: 0;
     `,
     wall: css`
         position: absolute;

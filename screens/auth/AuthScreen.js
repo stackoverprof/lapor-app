@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/native'
 import { Text, View, Image, ImageBackground } from 'react-native'
 import c from '../../core/style/theme.style'
@@ -11,6 +11,7 @@ import img_thief from '../../assets/img/illus/thief.png'
 import { useAuth } from '../../core/contexts/AuthContext'
 
 const AuthScreen = ({navigation}) => {
+    const [loading_auth, setLoading_auth] = useState(false)
     const { authMethods } = useAuth()
 
     return (
@@ -41,10 +42,14 @@ const AuthScreen = ({navigation}) => {
                 <Image source={gif_stripe} style={styles.stripebg} />
 
                 <RaisedButton 
-                    onPress={() => authMethods.google({navigation})} //loading
+                    onPress={() => {
+                        authMethods.google({navigation})
+                        setLoading_auth(true)
+                    }} //loading
                     iconsrc={img_googleIcon} 
                     size={20}
-                    wide 
+                    loading={loading_auth}
+                    wide
                 >
                     Sign In with Google
                 </RaisedButton>
