@@ -11,7 +11,7 @@ export const validateUsername = (value, warnMinimal = true ) => {
         return 'Awali dengan huruf atau angka'
     } else if (value.charAt(value.length - 1) === '.') {
         return 'Jangan akhiri dengan titik'
-    } else if (/[^a-z]/g.test(value)) {
+    } else if (/[A-Z ]+/.test(value)) {
         return 'Jangan gunakan huruf besar'
     } else if (!/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{3,19}$/.test(value)) {
         return 'Gunakan huruf, angka atau . _'
