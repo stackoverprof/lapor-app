@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import RaisedButton from './RaisedButton'
 import img_googleIcon from '../../assets/img/icons/google.png'
 import { useAuth } from '../../core/contexts/AuthContext'
@@ -9,9 +9,20 @@ const GoogleButton = ({afterSignedUp, afterSignedIn}) => {
 
     const handleLogin = async () => {
         setLoading(true)
-        await authMethods.google({afterSignedUp, afterSignedIn})
-        setLoading(false)
+        await authMethods.google({
+            afterSignedUp: () => {
+                afterSignedUp()
+                setLoading(false)
+            }, 
+            afterSignedIn: afterSignedIn,
+        })
     }
+
+    useEffect(() => {
+        return () => {
+            setLoading(false)
+        }
+    }, [])
 
     return (
         <RaisedButton 

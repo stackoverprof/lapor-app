@@ -24,7 +24,6 @@ const fetchToServerDB = (id) => {
 const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
-
     const [authState, setAuthState] = useState('initial')
     const [accessToken, setAccessToken] = useState('')
     const [user, setUser] = useState({})
