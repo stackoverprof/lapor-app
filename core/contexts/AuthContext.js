@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, createContext } from 'react'
 import * as Google from 'expo-google-app-auth'
 import * as SecureStore from 'expo-secure-store'
-
-const AuthContext = React.createContext()
 
 const sampleData = {
     id: '113814096624824806623',
@@ -23,7 +21,10 @@ const fetchToServerDB = (id) => {
     })
 }
 
+const AuthContext = createContext()
+
 const AuthProvider = ({children}) => {
+
     const [authState, setAuthState] = useState('initial')
     const [accessToken, setAccessToken] = useState('')
     const [user, setUser] = useState({})

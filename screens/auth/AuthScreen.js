@@ -39,7 +39,7 @@ const AuthScreen = ({navigation}) => {
 
                 <GoogleButton 
                     afterSignedUp={() => navigation.push('RegistrationScreen')}
-                    afterSignedIn={() => navigation.navigate('AppArea')}
+                    afterSignedIn={() => navigation.navigate('MainArea')}
                 />
             </ImageBackground>
         </View>

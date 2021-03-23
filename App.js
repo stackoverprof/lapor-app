@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import AppLoading from 'expo-app-loading'
-import AuthProvider from './core/contexts/AuthContext'
+import AppProvider from './core/contexts/AppContext'
 import RootNavigation from './components/navigation/RootNavigation'
 
 import { 
@@ -29,11 +29,11 @@ const App = () => {
     if (!fontsLoaded) return <AppLoading />
 
     return (
-        <AuthProvider>
+        <AppProvider>
             <NavigationContainer>
                 <RootNavigation />
             </NavigationContainer>
-        </AuthProvider>
+        </AppProvider>
     )
 }
 

@@ -13,7 +13,7 @@ const IntroScreen = ({navigation}) => {
                 <View></View>
                 <View style={styles.lower}>
                     <RaisedButton
-                        onPress={() => navigation.navigate('AppArea')}
+                        onPress={() => navigation.navigate('MainArea')}
                         size={20}
                         wide
                     >
