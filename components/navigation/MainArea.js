@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import HomeScreen from '../../screens/app/HomeScreen'
-import CreatorScreen from '../../screens/app/CreatorScreen'
-import UrgentScreen from '../../screens/app/UrgentScreen'
-import DashboardScreen from '../../screens/app/DashboardScreen'
-import { useApp } from '../../core/contexts/AppContext'
+import HomeScreen from '../../screens/main/HomeScreen'
+import CreatorScreen from '../../screens/main/CreatorScreen'
+import UrgentScreen from '../../screens/main/UrgentScreen'
+import DashboardScreen from '../../screens/main/DashboardScreen'
+import { useAuth } from '../../core/contexts/AuthContext'
 
 const MainArea = () => {
     const MainArea = createBottomTabNavigator()
-    
-    const { setHasEnteredMain } = useApp()
+
+    const { setShowAuthArea } = useAuth()
 
     useEffect(() => {
-        setHasEnteredMain(true)
-    }, [])
+        setShowAuthArea(false)
+    }, [])    
 
     return (
         <MainArea.Navigator screenOptions={{headerShown: true}}>

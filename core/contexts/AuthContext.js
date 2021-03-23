@@ -30,6 +30,7 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState({})
     const [isNew, setIsNew] = useState(false)
     const [errorAuth, setErrorAuth] = useState('')
+    const [showAuthArea, setShowAuthArea] = useState(true)
 
     const storeToken = {
         save: async (value) => {
@@ -125,6 +126,11 @@ const AuthProvider = ({children}) => {
         syncSession()
     }, [])
 
+    useEffect(() => {
+        
+        console.log(showAuthArea ? 'true' : 'false')
+    }, [showAuthArea])
+
     return (
         <AuthContext.Provider value={{
             authState,
@@ -134,6 +140,8 @@ const AuthProvider = ({children}) => {
             errorAuth,
             setErrorAuth,
             authMethods,
+            showAuthArea,
+            setShowAuthArea,
         }}>
             { children }
         </AuthContext.Provider>
