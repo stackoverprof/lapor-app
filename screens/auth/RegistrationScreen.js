@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/native'
 import c from '../../core/style/theme.style'
+import { validateUsername, validateTelephone } from '../../core/utils/validator'
+import RaisedButton from '../../components/atomic/RaisedButton'
+import gif_stripe from '../../assets/img/gif/stripe.gif'
+import { useAuth } from '../../core/contexts/AuthContext'
+import WelcomeHeader from '../../components/auth/WelcomeHeader'
 import {
     View,
     Text,
@@ -8,17 +13,9 @@ import {
     TextInput,
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
-    ImageBackground,
     Keyboard,
     Alert
 } from 'react-native'
-
-import { validateUsername, validateTelephone } from '../../core/utils/validator'
-
-import RaisedButton from '../../components/atomic/RaisedButton'
-import gif_stripe from '../../assets/img/gif/stripe.gif'
-import img_ava from '../../assets/img/assets/holder-ava.png'
-import { useAuth } from '../../core/contexts/AuthContext'
 
 const AuthScreen = ({navigation}) => {
     const [username, setUsername] = useState('')
@@ -26,6 +23,8 @@ const AuthScreen = ({navigation}) => {
     const [invalidUsername, setInvalidUsername] = useState('')
     const [invalidTelephone, setInvalidTelephone] = useState(null)
     const [warnMinimal, setWarnMinimal] = useState(false)
+
+    //ihrih lkmjlwmjcewjtow
 
     const { user } = useAuth()
 
@@ -71,12 +70,7 @@ const AuthScreen = ({navigation}) => {
                     <View style={styles.inner}>
                         <View></View>
 
-                        <View style={[styles.container, styles.upper]}>
-                            <Text style={styles.textWelcome}>Selamat{'\n'}Datang.</Text>
-                            <ImageBackground source={img_ava} style={styles.avaContainer}>
-                                <Image source={{uri: user.photoUrl}} style={styles.ava} />
-                            </ImageBackground>
-                        </View>
+                        <WelcomeHeader />
 
                         <View style={[styles.container, styles.form]}>
                             <View style={styles.inputContainer}>
@@ -191,9 +185,6 @@ const styles = {
     form: css`
         flex-direction: column;
     `,
-    upper: css`
-        margin-bottom: 40px;
-    `,
     lower: css`
         padding-bottom: 40px;
         flex: 1;
@@ -216,21 +207,5 @@ const styles = {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-    `,
-    textWelcome: css`
-        font-family: Slab_7;
-        font-size: 30px;
-    `,
-    ava: css`
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
-        overflow: hidden;
-    `,
-    avaContainer: css`
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
-        overflow: hidden;
     `,
 }

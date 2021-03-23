@@ -1,6 +1,6 @@
 import React  from 'react'
 import { css } from '@emotion/native'
-import { View, Text, Image } from 'react-native'
+import { View, Image } from 'react-native'
 
 import RaisedButton from '../../components/atomic/RaisedButton'
 import gif_stripe from '../../assets/img/gif/stripe.gif'
