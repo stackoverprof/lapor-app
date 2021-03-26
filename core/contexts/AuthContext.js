@@ -25,7 +25,7 @@ const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
     const [authState, setAuthState] = useState('initial')
-    const [accessToken, setAccessToken] = useState('')
+    const [idToken, setAccessToken] = useState('')
     const [user, setUser] = useState({})
     const [isNew, setIsNew] = useState(false)
     const [errorAuth, setErrorAuth] = useState('')
@@ -33,15 +33,15 @@ const AuthProvider = ({children}) => {
 
     const storeToken = {
         save: async (value) => {
-            await SecureStore.setItemAsync('accessToken', value)
+            await SecureStore.setItemAsync('idToken', value)
         },
         get: async () => {
-            const value = await SecureStore.getItemAsync('accessToken')
+            const value = await SecureStore.getItemAsync('idToken')
             if (value) return value
             else return ''
         },
         delete: async () => {
-            await SecureStore.deleteItemAsync('accessToken')
+            await SecureStore.deleteItemAsync('idToken')
         }
     }
 
@@ -57,8 +57,9 @@ const AuthProvider = ({children}) => {
                 tel: '',
                 fullName: `${res.user.givenName} ${res.user.familyName}`
             })
-            await storeToken.save(res.accessToken)
-            setAccessToken(res.accessToken)
+            await storeToken.save(res.idToken)            
+            console.log(res.idToken)
+            setAccessToken(res.idToken)
             setAuthState('user')
             //insert data ke db user
             afterSignedUp()
@@ -67,8 +68,9 @@ const AuthProvider = ({children}) => {
             console.log('existing')
             setIsNew(false)
             setUser(data)
-            await storeToken.save(res.accessToken)
-            setAccessToken(res.accessToken)
+            await storeToken.save(res.idToken)
+            setAccessToken(res.idToken)
+            console.log(res.idToken)
             setAuthState('user')
 
             afterSignedIn()
@@ -93,6 +95,7 @@ const AuthProvider = ({children}) => {
                 scopes: ['profile', 'email'],
             })
             .then(async res => {
+                console.log(res)
                 if (res.type === 'success') {
                     await fetchToServerDB(res.user.id) //should be using token
                     .then(data => procedures.existingUser(res, data, afterSignedIn))
@@ -133,7 +136,7 @@ const AuthProvider = ({children}) => {
     return (
         <AuthContext.Provider value={{
             authState,
-            accessToken,
+            idToken,
             user,
             isNew,
             errorAuth,
