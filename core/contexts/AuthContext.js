@@ -119,7 +119,6 @@ const AuthProvider = ({children}) => {
 
     useEffect(() => {
         const syncSession = async () => {
-            storeToken.delete() //sementara, always reset token
             const savedToken = await storeToken.get()
             if (savedToken) procedures.continueSession('113814096624824806623')
             else console.log('no token stored')
@@ -127,11 +126,6 @@ const AuthProvider = ({children}) => {
 
         syncSession()
     }, [])
-
-    useEffect(() => {
-        
-        console.log(showAuthArea ? 'true' : 'false')
-    }, [showAuthArea])
 
     return (
         <AuthContext.Provider value={{

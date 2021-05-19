@@ -2,7 +2,6 @@ import React from 'react'
 import { css } from '@emotion/native'
 import { View, Text, Image, ImageBackground } from 'react-native'
 import { useAuth } from '../../core/contexts/AuthContext'
-import img_ava from '../../assets/img/assets/holder-ava.png'
 
 const WelcomeHeader = () => {
     const { user } = useAuth()
@@ -10,7 +9,7 @@ const WelcomeHeader = () => {
     return (
         <View style={[styles.container, styles.upper]}>
             <Text style={styles.textWelcome}>Selamat{'\n'}Datang.</Text>
-            <ImageBackground source={img_ava} style={styles.avaContainer}>
+            <ImageBackground source={require('../../assets/img/assets/holder-ava.png')} style={styles.avaContainer}>
                 <Image source={{uri: user.photoUrl}} style={styles.ava} />
             </ImageBackground>
         </View>
