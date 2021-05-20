@@ -16,14 +16,14 @@ const fetchToServerDB = (id) => {
         if (id === '113814096624824806623') {
             resolve(sampleData)
         }
-      
+
         reject(new Error("no user"))
     })
 }
 
 const AuthContext = createContext()
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
     const [authState, setAuthState] = useState('initial')
     const [idToken, setAccessToken] = useState('')
     const [user, setUser] = useState({})
@@ -57,7 +57,7 @@ const AuthProvider = ({children}) => {
                 tel: '',
                 fullName: `${res.user.givenName} ${res.user.familyName}`
             })
-            await storeToken.save(res.idToken)            
+            await storeToken.save(res.idToken)
             console.log(res.idToken)
             setAccessToken(res.idToken)
             setAuthState('user')
@@ -83,32 +83,32 @@ const AuthProvider = ({children}) => {
             setAuthState('user')
             //,false then: back to all initial
             //storeToken.delete()
-        } 
+        }
     }
 
     const authMethods = {
-        google : async ({afterSignedIn = () => {}, afterSignedUp = () => {}}) => {
-            
+        google: async ({ afterSignedIn = () => { }, afterSignedUp = () => { } }) => {
+
             return Google.logInAsync({
                 androidClientId: '864888909882-l3iqtf3947l9nb2s3bgh12gkkat2citv.apps.googleusercontent.com',
                 iosClientId: '864888909882-52dg581j3mac0l5oigutmfscndpdc95a.apps.googleusercontent.com',
                 scopes: ['profile', 'email'],
             })
-            .then(async res => {
-                console.log(res)
-                if (res.type === 'success') {
-                    await fetchToServerDB(res.user.id) //should be using token
-                    .then(data => procedures.existingUser(res, data, afterSignedIn))
-                    .catch(() => procedures.newUser(res, afterSignedUp))
-                } else {
-                    console.log('cancelled')
-                }
-            })
-            .catch(err => console.log(err))           
+                .then(async res => {
+                    console.log(res)
+                    if (res.type === 'success') {
+                        await fetchToServerDB(res.user.id) //should be using token
+                            .then(data => procedures.existingUser(res, data, afterSignedIn))
+                            .catch(() => procedures.newUser(res, afterSignedUp))
+                    } else {
+                        console.log('cancelled')
+                    }
+                })
+                .catch(err => console.log(err))
 
         },
-        
-        signOut : () => {
+
+        signOut: () => {
             //find out how to signout
             //delete token
             setUser({})
@@ -118,6 +118,7 @@ const AuthProvider = ({children}) => {
     }
 
     useEffect(() => {
+        // storeToken.delete()
         const syncSession = async () => {
             const savedToken = await storeToken.get()
             if (savedToken) procedures.continueSession('113814096624824806623')
@@ -139,7 +140,7 @@ const AuthProvider = ({children}) => {
             showAuthArea,
             setShowAuthArea,
         }}>
-            { children }
+            { children}
         </AuthContext.Provider>
     )
 }
