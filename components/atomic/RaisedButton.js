@@ -6,7 +6,10 @@ import * as Haptics from 'expo-haptics'
 
 export default RaisedButton = (props) => {
     const pressHandler = () => {
-        if (Platform.OS === "ios") Haptics.selectionAsync()
+        if (Platform.OS === "ios") {
+            if (props.haptics === 'low') Haptics.selectionAsync()
+            else Haptics.notificationAsync('success')
+        }
         props.onPress()
     }
 
