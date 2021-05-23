@@ -22,9 +22,10 @@ const Header = () => {
 const styles = {
     head: css`
         width: 100%;
-        padding: 24px;
+        padding: 12px 0;
         flex-direction: row; 
-        margin-top: 48px;       
+        margin-top: 48px;     
+        min-width: 92%;
     `,
     text1: css`
         font-size: ${Platform.OS === 'ios' ? '28px' : '26px'};

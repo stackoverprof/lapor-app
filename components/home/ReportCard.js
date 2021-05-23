@@ -4,17 +4,17 @@ import { View, Image, Text } from 'react-native'
 import c from './../../core/style/theme.style'
 import GrayButton from '../atomic/GrayButton'
 
-const ReportCard = () => {
+const ReportCard = ({ img, title, date }) => {
 
     return (
         <View style={styles.container}>
-            <Image source={{ uri: 'https://statik.tempo.co/data/2017/10/04/id_652651/652651_720.jpg' }} style={styles.thumbnail} />
+            <Image source={{ uri: img }} style={styles.thumbnail} />
             <View style={styles.content}>
-                <Text style={styles.text1}>Diduga maling, dikeroyok massa lur kasihan</Text>
+                <Text style={styles.text1}>{title}</Text>
                 <View style={styles.sub_content}>
-                    <Text style={styles.text_date}>11.07 - 16 Maret</Text>
+                    <Text style={styles.text_date}>{date}</Text>
 
-                    <GrayButton size={14} onPress={() => console.log('pressed')}>
+                    <GrayButton size={14} haptics="low" onPress={() => console.log('pressed')}>
                         Detail
                     </GrayButton>
                 </View>
@@ -25,10 +25,14 @@ const ReportCard = () => {
 
 const styles = {
     container: css`
-        width: 100%;
-        padding: 24px;
+        width: 92%;
+        padding: 12px;
         flex-direction: row; 
-        margin-top: 48px;       
+        margin-top: 24px;
+        border-radius: 8px;
+        border: 1px solid ${c.grayLight};
+        background: ${c.white};
+        box-shadow: 0 6px 0 ${c.grayLight};
     `,
     text1: css`
         font-size: ${Platform.OS === 'ios' ? '18px' : '16px'};
@@ -40,6 +44,7 @@ const styles = {
         font-size: ${Platform.OS === 'ios' ? '12px' : '10px'};
         font-family: Slab_7;
         margin-right: 8px;
+        margin-bottom: 2px;
         color: ${c.grayDark};
     `,
     thumbnail: css`
@@ -53,13 +58,13 @@ const styles = {
         justify-content: space-between;
         align-items: flex-start;
         flex-direction: column;
-        padding-bottom: 8px;
+        padding-bottom: 2px;
         flex: 1;
     `,
     sub_content: css`
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-end;
         flex-direction: row;
         width: 100%;
     `,
