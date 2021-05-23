@@ -24,7 +24,7 @@ const MainArea = () => {
     return (
         <MainArea.Navigator screenOptions={{ headerShown: true }} tabBarOptions={{
             activeTintColor: c.red,
-            inactiveTintColor: c.black,
+            inactiveTintColor: c.grayDark,
             style: {
                 height: Platform.OS === 'ios' ? 76 : 60,
                 paddingTop: Platform.OS === 'ios' ? 4 : 2,
@@ -32,7 +32,7 @@ const MainArea = () => {
             },
             labelStyle: {
                 fontFamily: 'Slab_4',
-                fontSize: 8,
+                fontSize: Platform.OS === 'ios' ? 10 : 9,
             },
         }}>
             <MainArea.Screen name="HomeScreen" component={HomeScreen} options={{

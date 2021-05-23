@@ -8,11 +8,11 @@ const HomeScreen = () => {
     return (
         <View style={styles.screen}>
             <View style={styles.head}>
-                <Image source={require('../../assets/img/illus/mega.png')} />
+                <Image source={require('../../assets/img/illus/mega.png')} style={styles.megaphone} />
                 <View style={styles.content}>
                     <Text style={styles.text1}>Laporan Terkini</Text>
-                    <RaisedButton shallow size={18} onPress={() => console.log('pressed')} icon={<IconFA5 name="plus" size={20} color={'#FFF'} />}>
-                        Laporkan
+                    <RaisedButton shallow size={16} onPress={() => console.log('pressed')} icon={<IconFA5 name="plus" size={20} color={'#FFF'} />}>
+                        Laporkan!
                     </RaisedButton>
                 </View>
             </View>
@@ -25,6 +25,7 @@ export default HomeScreen
 const styles = {
     screen: css`
         flex: 1;
+        background: #fff;
     `,
     head: css`
         width: 100%;
@@ -34,6 +35,13 @@ const styles = {
     `,
     text1: css`
         font-size: 26px;
+        font-family: Slab_7;
+        margin-bottom: 8px;
+    `,
+    megaphone: css`
+        height: 100px;
+        width: 100px;
+        margin-right: 12px;
     `,
     content: css`
         display: flex;
