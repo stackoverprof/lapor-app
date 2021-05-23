@@ -14,27 +14,27 @@ import c from './../../core/style/theme.style';
 
 const MainArea = () => {
     const MainArea = createBottomTabNavigator()
-
     const { setShowAuthArea } = useAuth()
+    const tabBarOptions = {
+        activeTintColor: c.red,
+        inactiveTintColor: c.grayDark,
+        style: {
+            height: Platform.OS === 'ios' ? 76 : 60,
+            paddingTop: Platform.OS === 'ios' ? 4 : 2,
+            paddingBottom: Platform.OS === 'ios' ? 28 : 8,
+        },
+        labelStyle: {
+            fontFamily: 'Slab_4',
+            fontSize: Platform.OS === 'ios' ? 10 : 9,
+        },
+    }
 
     useEffect(() => {
         setShowAuthArea(false)
     }, [])
 
     return (
-        <MainArea.Navigator screenOptions={{ headerShown: true }} tabBarOptions={{
-            activeTintColor: c.red,
-            inactiveTintColor: c.grayDark,
-            style: {
-                height: Platform.OS === 'ios' ? 76 : 60,
-                paddingTop: Platform.OS === 'ios' ? 4 : 2,
-                paddingBottom: Platform.OS === 'ios' ? 28 : 8,
-            },
-            labelStyle: {
-                fontFamily: 'Slab_4',
-                fontSize: Platform.OS === 'ios' ? 10 : 9,
-            },
-        }}>
+        <MainArea.Navigator screenOptions={{ headerShown: true }} tabBarOptions={tabBarOptions}>
             <MainArea.Screen name="HomeScreen" component={HomeScreen} options={{
                 title: 'Beranda',
                 tabBarIcon: ({ size, color }) => (
