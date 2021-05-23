@@ -34,6 +34,7 @@ const styles = {
         height: 100px;
         width: 100px;
         margin-right: 12px;
+        border-radius: 6px;
     `,
     content: css`
         display: flex;
