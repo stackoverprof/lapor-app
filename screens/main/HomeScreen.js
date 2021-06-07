@@ -36,11 +36,26 @@ const styles = {
         align-items: center;
         flex-direction: column;
         width: 100%;
-        flex: 1;
+        min-width: 100%;
     `,
 }
 
 const sample = [
+    {
+        img: 'https://statik.tempo.co/data/2017/10/04/id_652651/652651_720.jpg',
+        title: 'Diduga maling, dikejar warga 20km',
+        date: '11.07 - 16 Maret',
+    },
+    {
+        img: 'https://statik.tempo.co/data/2017/10/04/id_652651/652651_720.jpg',
+        title: 'Diduga maling, dikejar warga 20km',
+        date: '11.07 - 16 Maret',
+    },
+    {
+        img: 'https://statik.tempo.co/data/2017/10/04/id_652651/652651_720.jpg',
+        title: 'Diduga maling, dikejar warga 20km',
+        date: '11.07 - 16 Maret',
+    },
     {
         img: 'https://statik.tempo.co/data/2017/10/04/id_652651/652651_720.jpg',
         title: 'Diduga maling, dikejar warga 20km',

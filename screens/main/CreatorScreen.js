@@ -1,31 +1,41 @@
 import React from 'react'
 import { css } from '@emotion/native'
 import { View, Text, TextInput } from 'react-native'
+import { Pressable } from 'react-native'
 
 const CreatorScreen = () => {
-    const [judul, setJudul] = React.useState(null);
-    const [deskripsi, setDeskripsi]= React.useState(null);
+	const [judul, setJudul] = React.useState(null);
+	const [deskripsi, setDeskripsi] = React.useState(null);
 
-    return (
-        <View style={styles.screen}>
-
-            
-            <Text>Buat Laporan</Text>
-            <View style={styles.body}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setJudul}
-                    value={judul}
-                    placeholder="Judul Laporan"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setDeskripsi}
-                    value={deskripsi}
-                    placeholder="Deskripsi Laporan"
-                />
-            </View>
-            {/* <TextInput
+	return (
+		<View style={styles.screen}>
+			<Text>Buat Laporan</Text>
+			<View style={styles.body}>
+				<Text>ID Laporan</Text>
+				<TextInput
+					style={styles.input}
+					onChangeText={setJudul}
+					value={judul}
+					placeholder="Judul Laporan"
+				/>
+				<TextInput
+					style={styles.input}
+					onChangeText={setDeskripsi}
+					value={deskripsi}
+					placeholder="Deskripsi Laporan"
+				/>
+				<View style={syles.gambar}>
+					<View style={styles.gambarSection}></View>
+					<Pressable></Pressable>
+				</View>
+				<TextInput
+					style={styles.input}
+					onChangeText={setKontak}
+					value={kontakPerson}
+					placeholder="Kontak yang bisa dihubungi"
+				/>
+			</View>
+			{/* <TextInput
                 style={styles.input}
                 onChangeText={checkUsername}
                 value={username}
@@ -35,24 +45,25 @@ const CreatorScreen = () => {
                     setWarnMinimal(true)
                 }}
             /> */}
-        </View>
-    )
+		</View>
+	)
 }
 
 export default CreatorScreen
 
 const styles = {
-    screen: css`
+	screen: css`
         flex: 1;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         padding-top: 40px;
     `,
-    body: css`
+	body: css`
+        padding: 20px;
         width: 100%;
     `,
-    input: css`
+	input: css`
         font-family: Slab_4;
         font-size: 24px;
         border-bottom-width: 2px;
