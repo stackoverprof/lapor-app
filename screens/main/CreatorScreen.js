@@ -6,6 +6,7 @@ import { Pressable } from 'react-native'
 const CreatorScreen = () => {
 	const [judul, setJudul] = React.useState(null);
 	const [deskripsi, setDeskripsi] = React.useState(null);
+	const [kontakPerson, setKontak] = React.useState(null);
 
 	return (
 		<View style={styles.screen}>
@@ -24,9 +25,13 @@ const CreatorScreen = () => {
 					value={deskripsi}
 					placeholder="Deskripsi Laporan"
 				/>
-				<View style={syles.gambar}>
+				<View style={styles.gambar}>
 					<View style={styles.gambarSection}></View>
-					<Pressable></Pressable>
+					<Pressable
+						onPress={() => {
+						}}>
+						<Text>Unggah gambar</Text>
+					</Pressable>
 				</View>
 				<TextInput
 					style={styles.input}
@@ -34,6 +39,12 @@ const CreatorScreen = () => {
 					value={kontakPerson}
 					placeholder="Kontak yang bisa dihubungi"
 				/>
+				<Text>Email Pelapor</Text>
+				<View>
+					<Text>Jumlah Vote</Text>
+					<Text>Status</Text>
+				</View>
+				<Text>Datetime</Text>
 			</View>
 			{/* <TextInput
                 style={styles.input}
@@ -69,5 +80,11 @@ const styles = {
         border-bottom-width: 2px;
         width: 100%;
         padding: 8px 0;
-    `
+    `,
+	gambar: css`
+		width: 100%;
+	`,
+	gambarSection: css`
+		width: 100%;
+	`
 }
