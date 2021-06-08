@@ -129,6 +129,10 @@ const AuthProvider = ({ children }) => {
 		syncSession()
 	}, [])
 
+	useEffect(() => {
+		console.log(user)
+	}, [user])
+
 	return (
 		<AuthContext.Provider value={{
 			authState,
