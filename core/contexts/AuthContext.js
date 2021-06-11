@@ -119,7 +119,6 @@ const AuthProvider = ({ children }) => {
 	}
 
 	useEffect(() => {
-		// storeToken.delete()
 		const syncSession = async () => {
 			const savedToken = await storeToken.get()
 			if (savedToken) procedures.continueSession('113814096624824806623')
