@@ -13,10 +13,9 @@ const sampleData = {
 
 const fetchToServerDB = (id) => {
 	return new Promise((resolve, reject) => {
-		if (id === '113814096624824806623') {
+		if (id) {
 			resolve(sampleData)
 		}
-
 		reject(new Error("no user"))
 	})
 }
@@ -48,6 +47,7 @@ const AuthProvider = ({ children }) => {
 	const procedures = {
 		newUser: async (res, afterSignedUp) => {
 			console.log('new user')
+			console.log(res.user)
 			setIsNew(true)
 			setUser({
 				id: res.user.id,
@@ -81,6 +81,7 @@ const AuthProvider = ({ children }) => {
 			setIsNew(false)
 			setUser(res)
 			setAuthState('user')
+			setAccessToken(id)
 			//,false then: back to all initial
 			//storeToken.delete()
 		}
@@ -121,16 +122,19 @@ const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const syncSession = async () => {
 			const savedToken = await storeToken.get()
-			if (savedToken) procedures.continueSession('113814096624824806623')
+			if (savedToken) {
+				console.log('savedToken' + savedToken);
+				procedures.continueSession(savedToken)
+			}
 			else console.log('no token stored')
 		}
 
 		syncSession()
 	}, [])
 
-	useEffect(() => {
-		console.log(user)
-	}, [user])
+	// useEffect(() => {
+	// 	console.log(user)
+	// }, [user])
 
 	return (
 		<AuthContext.Provider value={{

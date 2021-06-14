@@ -6,25 +6,25 @@ import GrayButton from '../atomic/GrayButton'
 
 const ReportCard = ({ img, title, date }) => {
 
-    return (
-        <View style={styles.container}>
-            <Image source={{ uri: img }} style={styles.thumbnail} />
-            <View style={styles.content}>
-                <Text style={styles.text1}>{title}</Text>
-                <View style={styles.sub_content}>
-                    <Text style={styles.text_date}>{date}</Text>
+	return (
+		<View style={styles.container}>
+			<Image source={img ? { uri: img } : require('./../../assets/img/assets/holder-img.png')} style={styles.thumbnail} />
+			<View style={styles.content}>
+				<Text style={styles.text1}>{title}</Text>
+				<View style={styles.sub_content}>
+					<Text style={styles.text_date}>{date}</Text>
 
-                    <GrayButton size={14} haptics="low" onPress={() => console.log('pressed')}>
-                        Detail
+					<GrayButton size={14} haptics="low" onPress={() => console.log('pressed')}>
+						Detail
                     </GrayButton>
-                </View>
-            </View>
-        </View>
-    )
+				</View>
+			</View>
+		</View>
+	)
 }
 
 const styles = {
-    container: css`
+	container: css`
         width: 92%;
         padding: 12px;
         flex-direction: row; 
@@ -34,26 +34,26 @@ const styles = {
         background: ${c.white};
         box-shadow: 0 6px 0 ${c.grayLight};
     `,
-    text1: css`
+	text1: css`
         font-size: ${Platform.OS === 'ios' ? '18px' : '16px'};
         font-family: Slab_7;
         max-width: 100%;
         width: 100%;
     `,
-    text_date: css`
+	text_date: css`
         font-size: ${Platform.OS === 'ios' ? '12px' : '10px'};
         font-family: Slab_7;
         margin-right: 8px;
         margin-bottom: 2px;
         color: ${c.grayDark};
     `,
-    thumbnail: css`
+	thumbnail: css`
         height: 100px;
         width: 100px;
         margin-right: 12px;
         border-radius: 6px;
     `,
-    content: css`
+	content: css`
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -61,7 +61,7 @@ const styles = {
         padding-bottom: 2px;
         flex: 1;
     `,
-    sub_content: css`
+	sub_content: css`
         display: flex;
         justify-content: space-between;
         align-items: flex-end;

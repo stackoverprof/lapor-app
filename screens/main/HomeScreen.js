@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { css } from '@emotion/native'
 import { View, ScrollView } from 'react-native'
 import Header from '../../components/home/Header'
@@ -6,22 +7,37 @@ import ReportCard from '../../components/home/ReportCard'
 import c from './../../core/style/theme.style';
 
 const HomeScreen = () => {
-    return (
-        <View style={styles.screen}>
-            <ScrollView contentContainerStyle={styles.scrollview}>
-                <Header />
-                {sample.map((item, i) => (
-                    <ReportCard img={item.img} title={item.title} date={item.date} key={i} />
-                ))}
-            </ScrollView>
-        </View>
-    )
+	const [listLaporan, setListLaporan] = useState([]);
+
+	useEffect(() => {
+		console.log(listLaporan)
+	}, [listLaporan])
+
+	useEffect(() => {
+		(async () => {
+			const laporans = await axios.get('https://node-mongo-pjpb.herokuapp.com/laporan')
+				.then(res => res.data)
+				.catch(err => console.log(err))
+			setListLaporan(laporans)
+		})()
+	}, [])
+
+	return (
+		<View style={styles.screen}>
+			<ScrollView contentContainerStyle={styles.scrollview}>
+				<Header />
+				{listLaporan.map((item, i) => (
+					<ReportCard img={item.gambar} title={item.title} date={item.datetime} key={i} />
+				))}
+			</ScrollView>
+		</View>
+	)
 }
 
 export default HomeScreen
 
 const styles = {
-    screen: css`
+	screen: css`
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -30,7 +46,7 @@ const styles = {
         background: ${c.white};
         width: 100%;
     `,
-    scrollview: css`
+	scrollview: css`
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -41,35 +57,3 @@ const styles = {
     `,
 }
 
-const sample = [
-    {
-        img: 'https://statik.tempo.co/data/2017/10/04/id_652651/652651_720.jpg',
-        title: 'Diduga maling, dikejar warga 20km',
-        date: '11.07 - 16 Maret',
-    },
-    {
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_BO2hKOHWRBNGmTPnLSvo9Rz6wGOgxT3XWshHEEy2s4otRCkuUpX9ZjOkiTuTkhzAkU&usqp=CAU',
-        title: 'Anak balita hilang, tolong cariin',
-        date: '11.07 - 16 Maret',
-    },
-    {
-        img: 'https://imgx.motorplus-online.com/crop/0x0:0x0/700x465/photo/gridoto/2018/01/28/3055710576.jpg',
-        title: 'Pencurian motor di daerah apa',
-        date: '11.07 - 16 Maret',
-    },
-    {
-        img: 'https://picture-origin.rumah123.com/news-content/img/2018/10/03144309/GettyImages-531203253.jpg',
-        title: 'Sial. Perampokan di rumah',
-        date: '11.07 - 16 Maret',
-    },
-    {
-        img: 'https://pbs.twimg.com/profile_images/1234180267385839616/tEfvr0zp_200x200.jpg',
-        title: 'Anak hilang tapi dah dewasa',
-        date: '11.07 - 16 Maret',
-    },
-    {
-        img: 'https://4.bp.blogspot.com/-9xs6y6hU-KI/VzHzHzF9PaI/AAAAAAAAABk/nm_yX5QNey01fekVT9YGGZiFo1wyQPXOACLcB/s1600/6300137_201507190747090460.png',
-        title: 'Seorang pria menikahi tiang',
-        date: '11.07 - 16 Maret',
-    },
-]
