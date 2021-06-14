@@ -4,7 +4,7 @@ import { View, Image, Text } from 'react-native'
 import c from './../../core/style/theme.style'
 import GrayButton from '../atomic/GrayButton'
 
-const ReportCard = ({ img, title, date }) => {
+const ReportCard = ({ navigation, img, title, date }) => {
 
 	return (
 		<View style={styles.container}>
@@ -14,7 +14,7 @@ const ReportCard = ({ img, title, date }) => {
 				<View style={styles.sub_content}>
 					<Text style={styles.text_date}>{date}</Text>
 
-					<GrayButton size={14} haptics="low" onPress={() => console.log('pressed')}>
+					<GrayButton size={14} haptics="low" onPress={() => navigation.push('NewsDetailScreen')}>
 						Detail
                     </GrayButton>
 				</View>

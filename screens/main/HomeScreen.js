@@ -6,7 +6,7 @@ import Header from '../../components/home/Header'
 import ReportCard from '../../components/home/ReportCard'
 import c from './../../core/style/theme.style';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
 	const [listLaporan, setListLaporan] = useState([]);
 
 	useEffect(() => {
@@ -27,7 +27,7 @@ const HomeScreen = () => {
 			<ScrollView contentContainerStyle={styles.scrollview}>
 				<Header />
 				{listLaporan.map((item, i) => (
-					<ReportCard img={item.gambar} title={item.title} date={item.datetime} key={i} />
+					<ReportCard navigation={navigation} img={item.gambar} title={item.title} date={item.datetime} key={i} />
 				))}
 			</ScrollView>
 		</View>

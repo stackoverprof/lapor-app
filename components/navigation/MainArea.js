@@ -11,56 +11,57 @@ import UrgentScreen from '../../screens/main/UrgentScreen'
 import DashboardScreen from '../../screens/main/DashboardScreen'
 import { useAuth } from '../../core/contexts/AuthContext'
 import c from './../../core/style/theme.style';
+import HomeStack from './HomeStack'
 
 const MainArea = () => {
-    const MainArea = createBottomTabNavigator()
-    const { setShowAuthArea } = useAuth()
-    const tabBarOptions = {
-        activeTintColor: c.red,
-        inactiveTintColor: c.grayDark,
-        style: {
-            height: Platform.OS === 'ios' ? 76 : 60,
-            paddingTop: Platform.OS === 'ios' ? 4 : 2,
-            paddingBottom: Platform.OS === 'ios' ? 28 : 8,
-        },
-        labelStyle: {
-            fontFamily: 'Slab_4',
-            fontSize: Platform.OS === 'ios' ? 10 : 9,
-        },
-    }
+	const MainArea = createBottomTabNavigator()
+	const { setShowAuthArea } = useAuth()
+	const tabBarOptions = {
+		activeTintColor: c.red,
+		inactiveTintColor: c.grayDark,
+		style: {
+			height: Platform.OS === 'ios' ? 76 : 60,
+			paddingTop: Platform.OS === 'ios' ? 4 : 2,
+			paddingBottom: Platform.OS === 'ios' ? 28 : 8,
+		},
+		labelStyle: {
+			fontFamily: 'Slab_4',
+			fontSize: Platform.OS === 'ios' ? 10 : 9,
+		},
+	}
 
-    useEffect(() => {
-        setShowAuthArea(false)
-    }, [])
+	useEffect(() => {
+		setShowAuthArea(false)
+	}, [])
 
-    return (
-        <MainArea.Navigator screenOptions={{ headerShown: true }} tabBarOptions={tabBarOptions}>
-            <MainArea.Screen name="HomeScreen" component={HomeScreen} options={{
-                title: 'Beranda',
-                tabBarIcon: ({ size, color }) => (
-                    <IconFA5 name="home" size={size} color={color} />
-                ),
-            }} />
-            <MainArea.Screen name="CreatorScreen" component={CreatorScreen} options={{
-                title: 'Lapor',
-                tabBarIcon: ({ size, color }) => (
-                    <IconFA5 name="plus" size={size} color={color} />
-                ),
-            }} />
-            <MainArea.Screen name="UrgentScreen" component={UrgentScreen} options={{
-                title: 'Darurat',
-                tabBarIcon: ({ size, color }) => (
-                    <IconMCI name="alert-circle-outline" size={size + 4} color={color} />
-                ),
-            }} />
-            <MainArea.Screen name="DashboardScreen" component={DashboardScreen} options={{
-                title: 'Dasbor',
-                tabBarIcon: ({ size, color }) => (
-                    <IconIO name="options" size={size + 4} color={color} />
-                ),
-            }} />
-        </MainArea.Navigator >
-    )
+	return (
+		<MainArea.Navigator screenOptions={{ headerShown: true }} tabBarOptions={tabBarOptions}>
+			<MainArea.Screen name="HomeStack" component={HomeStack} options={{
+				title: 'Beranda',
+				tabBarIcon: ({ size, color }) => (
+					<IconFA5 name="home" size={size} color={color} />
+				),
+			}} />
+			<MainArea.Screen name="CreatorScreen" component={CreatorScreen} options={{
+				title: 'Lapor',
+				tabBarIcon: ({ size, color }) => (
+					<IconFA5 name="plus" size={size} color={color} />
+				),
+			}} />
+			<MainArea.Screen name="UrgentScreen" component={UrgentScreen} options={{
+				title: 'Darurat',
+				tabBarIcon: ({ size, color }) => (
+					<IconMCI name="alert-circle-outline" size={size + 4} color={color} />
+				),
+			}} />
+			<MainArea.Screen name="DashboardScreen" component={DashboardScreen} options={{
+				title: 'Dasbor',
+				tabBarIcon: ({ size, color }) => (
+					<IconIO name="options" size={size + 4} color={color} />
+				),
+			}} />
+		</MainArea.Navigator >
+	)
 }
 
 export default MainArea
